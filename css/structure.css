@@ -1,0 +1,30 @@
+/*
+	TAGS
+*/
+
+html {
+    -webkit-text-size-adjust: none;
+}
+
+body {
+	margin: 0px;
+}
+
+canvas{
+	height   : 100%;
+	width    : 100%;
+	position : fixed;
+	top      : 0px;
+	bottom   : 0px;
+	left     : 0px;
+	right    : 0px;
+	z-index  : 0;
+}
+
+/*
+	IDS
+*/
+
+/*
+	CLASS
+*/
