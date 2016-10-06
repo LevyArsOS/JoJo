@@ -1,0 +1,35 @@
+@-webkit-keyframes up {
+    from { background-position:0px 0px; }
+    to { background-position:-128px 0px; }
+}
+@keyframes up {
+    from { background-position:0px 0px; }
+    to { background-position:-128px 0px; }
+}
+
+@-webkit-keyframes down {
+    from { background-position:0px -32px; }
+    to { background-position:-128px -32px; }
+}
+@keyframes down {
+    from { background-position:0px -32px; }
+    to { background-position:-128px -32px; }
+}
+
+@-webkit-keyframes left {
+    from { background-position:0px -64px; }
+    to { background-position:-128px -64px; }
+}
+@keyframes left {
+    from { background-position:0px -64px; }
+    to { background-position:-128px -64px; }
+}
+
+@-webkit-keyframes right {
+    from { background-position:0px -96px; }
+    to { background-position:-128px -96px; }
+}
+@keyframes right {
+    from { background-position:0px -96px; }
+    to { background-position:-128px -96px; }
+}

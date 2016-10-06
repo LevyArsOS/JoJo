@@ -1,0 +1,11 @@
+@-webkit-keyframes achieviment {
+    0% {top: -10vm;}
+    50% {top: 0px;}
+	100% {top: -200px;}
+}
+
+@keyframes achieviment {
+    0% {top: -200px;}
+    50% {top: 0px;}
+	100% {top: -200px;}
+}

@@ -10,21 +10,95 @@ body {
 	margin: 0px;
 }
 
-canvas{
-	height   : 100%;
-	width    : 100%;
+sprite{
+	width: 64px;
+	height: 64px;
+	background-image : url('../charset/Base.png');
 	position : fixed;
-	top      : 0px;
-	bottom   : 0px;
-	left     : 0px;
-	right    : 0px;
-	z-index  : 0;
+	background-size : 256px;
+}
+
+org{
+	position: absolute;
+    left: 30%;
+    margin-top: 2.5%;
+    font-weight: bold;
+}
+
+msg{
+    width: 65%;
+    position: absolute;
+    left: 30%;
+    text-align: justify;
+    margin-top: 9%;
+}
+
+msgBox{
+    width: 60%;
+    min-width: 480px;
+    min-height: 135px;
+    height: 22.5%;
+    background-color: rgba(158, 158, 158, 0.48);
+    position: fixed;
+    text-align: center;
+    margin: auto;
+    bottom: 0px;
+    left: 20%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-color: gray;
+    border: 4px solid hsla(0,0%,70%,1);
+}
+
+icon{
+    background-image: url(../charset/Bootleg3.png);
+    position: absolute;
+    height: 84%;
+    padding-left: 23.5%;
+    left: 0px;
+    background-size: contain;
+    margin: 2.5%;
+}
+
+next{
+	position: absolute;
+    right: 10px;
+    bottom: 10px;
 }
 
 /*
 	IDS
 */
 
+#achivement {
+    border: 5px solid #f1f1bd;
+    border-bottom-left-radius: 30px;
+    background: lightgoldenrodyellow;
+    position: fixed;
+	width : 250px;
+    right: 0px;
+    top: 0px;
+	-webkit-animation: achieviment 5s infinite;
+    animation: achieviment 5s infinite;
+}
+
 /*
 	CLASS
 */
+
+.up{
+	-webkit-animation: up 2s steps(4) infinite;
+	animation : up 2s steps(4) infinite;
+}
+.down{
+	-webkit-animation: down 2s steps(4) infinite;
+	animation : down 2s steps(4) infinite;
+}
+.left{
+	-webkit-animation: left 2s steps(4) infinite;
+	animation : left 2s steps(4) infinite;
+}
+.right{
+	-webkit-animation: right 2s steps(4) infinite;
+	animation : right 2s steps(4) infinite;
+}
