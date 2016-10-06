@@ -8,13 +8,14 @@ html {
 
 body {
 	margin: 0px;
+	background : black;
 }
 
 sprite{
 	width: 64px;
 	height: 64px;
 	background-image : url('../charset/Base.png');
-	position : fixed;
+	position : absolute;
 	background-size : 256px;
 }
 
@@ -39,7 +40,7 @@ msgBox{
     min-height: 135px;
     height: 22.5%;
     background-color: rgba(158, 158, 158, 0.48);
-    position: fixed;
+    position: absolute;
     text-align: center;
     margin: auto;
     bottom: 0px;
@@ -70,11 +71,18 @@ next{
 	IDS
 */
 
+#game{
+    width: 800px;
+    height: 600px;
+    position: relative;
+    margin: auto;
+}
+
 #achivement {
     border: 5px solid #f1f1bd;
     border-bottom-left-radius: 30px;
     background: lightgoldenrodyellow;
-    position: fixed;
+    position: absolute;
 	width : 250px;
     right: 0px;
     top: 0px;
