@@ -1,35 +1,35 @@
 @-webkit-keyframes up {
-    from { background-position:0px 0px; }
-    to { background-position:-128px 0px; }
+    from { background-position:-68px -68px; }
+    to { background-position:-203px -68px; }
 }
 @keyframes up {
-    from { background-position:0px 0px; }
-    to { background-position:-128px 0px; }
+    from { background-position:-68px -68px; }
+    to { background-position:-203px -68px; }
 }
 
 @-webkit-keyframes down {
-    from { background-position:0px -32px; }
-    to { background-position:-128px -32px; }
+    from { background-position:-68px 0px; }
+    to { background-position:-203px 0px; }
 }
 @keyframes down {
-    from { background-position:0px -32px; }
-    to { background-position:-128px -32px; }
+    from { background-position:-68px 0px; }
+    to { background-position:-203px 0px; }
 }
 
 @-webkit-keyframes left {
-    from { background-position:0px -64px; }
-    to { background-position:-128px -64px; }
+    from { background-position:-68px -204px; }
+    to { background-position:-256px -204px; }
 }
 @keyframes left {
-    from { background-position:0px -64px; }
-    to { background-position:-128px -64px; }
+    from {background-position: -68px -204px;}
+    to {background-position: -203px -204px;}
 }
 
 @-webkit-keyframes right {
-    from { background-position:0px -96px; }
-    to { background-position:-128px -96px; }
+    from { background-position:-68px -136px; }
+    to { background-position:-203px -136px; }
 }
 @keyframes right {
-    from { background-position:0px -96px; }
-    to { background-position:-128px -96px; }
+    from {background-position: -68px -136px;}
+    to {background-position: -203px -136px;}
 }

@@ -1,0 +1,132 @@
+﻿<xml>
+	<characters>
+		<character>
+			<nome>Mafforte</nome>
+			<falas>
+				<fala>Jovem, precisava cortar algumas caixas para o "Decom Celebrations", </fala>
+				<fala>mas infelizmente perdi minha coleção de facas.</fala>
+				<fala>Pode me ajudar a acha-las?</fala>
+				<fala>Encontre as 4 facas do Mafforte espalhadas pelo Decom.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Frabício Mortes</nome>
+			<falas>
+				<fala>Opa, cê ta bom? Preciso que leve esse PC pro outro prédio,</fala>
+				<fala>é para o evento. Um amigo meu estará  esperando.</fala>
+				<fala>Isso mesmo, você está certíssimo, bata na porta.</fala>
+				<fala>Atravesse o campus e entregue o PC.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Apaula de Delson</nome>
+			<falas>
+				<fala>Seja menos HUB e mais Switch em sua vida.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Zé William</nome>
+			<falas>
+				<fala>Oi, você pode me ajudar com esse programa para a festa?</fala>
+				<fala>Lembre-se, a vaca faz au au.</fala>
+				<fala>Complete o desafio do Zé William.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Wilson Salum</nome>
+			<falas>
+				<fala>Hehe, liste para mim as linguagens para web,</fala>
+				<fala>assim lembrarei o que devo falar no evento.</fala>
+				<fala>não se esqueça de listar todos os objetos deles.</fala>
+				<fala>Brincadeirinha, hehe.</fala>
+				<fala>Procure no w3schools tudo sobre web.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Gilvia</nome>
+			<falas>
+				<fala>Então, espero que você tenha lido o slide do Dropbox sobre hoje. Precisamos da sua ajuda para</fala>
+				<fala>organizar a festa de 10 anos do DECOM. Fale com os professores e os ajude no que precisarem.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Marquinhos Pradão</nome>
+			<falas>
+				<fala>Eai cara! Aqui ta tudo beleza, mas vai procurar outros professores, tem gente precisando</fala>
+				<fala>da sua ajuda. tie estas mia DECOM! E não esquece de cuidar do seu xuxu hein.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Edson Marqueteiro</nome>
+			<falas>
+				<fala>Você fica ai sem fazer as missões,</fala>
+				<fala>depois o cachorro passa e vc não.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>T.H. Iago</nome>
+			<falas>
+				<fala>Branco e verde, verde, branco e laranja, azul, branco e azul, laranja, branco e marrom, marrom.</fala>
+				<fala>estou sem criatividade para escrever mais</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Gilar</nome>
+			<falas>
+				<fala>Programador dessa geração! Proteja o Decom dos agentes da guuglu.</fala>
+				<fala>Eles querem os códigos dos jogos e não podemos deixar!</fala>
+				<fala>Na minha época a google não nos espionava.</fala>
+				<fala>Controle Gilar e derrote a guuglu atirando pão de queijo.</fala>
+			</falas>
+		</character>
+		<character>
+			<nome>Amigo do Mortes</nome>
+			<falas>
+				<fala>Cobertíssimo de razão, fois ludibriado. Esse PC velho não serve pra nada.</fala>
+				<fala>Leva de volta,vai.</fala>
+			</falas>
+		</character>
+	</characters>
+	<achievements>
+		<achievement>
+			<icone>0</icone>
+			<nome>Ayrton Senna</nome>
+			<desc>Primeirão a ser testado</desc>
+		</achievement>
+		<achievement>
+			<icone>1</icone>
+			<nome>Falso 1º de Abril</nome>
+			<desc>Ser enganado pelo professor</desc>
+		</achievement>
+		<achievement>
+			<icone>2</icone>
+			<nome>A vaca faz Au au ?</nome>
+			<desc>Ter sucesso na aula de programação</desc>
+		</achievement>
+		<achievement>
+			<icone>3</icone>
+			<nome>Não mexa com a minha filha!</nome>
+			<desc>Encontrar todas as "facas"</desc>
+		</achievement>
+		<achievement>
+			<icone>3</icone>
+			<nome>Garra</nome>
+			<desc>Encontrar a garra</desc>
+		</achievement>
+		<achievement>
+			<icone>4</icone>
+			<nome>Caçando</nome>
+			<desc>Faca de caçador</desc>
+		</achievement>
+		<achievement>
+			<icone>5</icone>
+			<nome>Borboleta</nome>
+			<desc>Encontrar a borboleta</desc>
+		</achievement>
+		<achievement>
+			<icone>6</icone>
+			<nome>Uma faca...?</nome>
+			<desc>Pensei que fossem facas...</desc>
+		</achievement>
+	</achievements>
+</xml>
