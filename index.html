@@ -1,4 +1,4 @@
-﻿<html>
+<html>
 	<head>
 		<title>DECOM ADVENTURE</title>
 		<meta charset="UTF-8"/>
@@ -14,22 +14,19 @@
 		<script src="javascript/controllers.js"></script>
 		<script src="javascript/uicontroller.js"></script>
 		<script src="javascript/main.js"></script>
-		
 	</head>
 	<body>
 		<game>
-			<div id="game" onload=''>
+			<div id="game">
 			</div>
-			<GUI>
-				<FPS></FPS>
+			<gui>
 				<div class="container">
-			  <div style="background: rgba(255,255,255,0.2);height: 100%;padding: 160px 40px;box-sizing: border-box;"><h1 style="
-				text-align: center;
-				margin-bottom: 10px;
-			">DECOM ADVENTURE</h1><button onclick="loadScene(1);document.getElementsByTagName('gui')[0].innerHTML = '<FPS></FPS>';">INICIAR JOGO</button><button onclick="loadScene(1);document.getElementsByTagName('gui')[0].innerHTML = '<FPS></FPS>';">CONTINUAR JOGO</button></div>
-			</div>
-			</GUI>
+					<div style="height: 600px;padding-top: 379px;box-sizing: border-box;">
+						<button onclick="initialize();">INICIAR JOGO</button>
+					</div>
+				</div>
+			</gui>
 		</game>
-		<a style='font-size: 24px;position: fixed;bottom: 0px;right: 0px;'href='https://www.facebook.com/alan.prado.9674/posts/1000469453398659'>Ajude-nos a divulgar este jogo! :)</a>
+		<a style="font-size: 18px;position: fixed;bottom: 0px;right: 0px;color: blue;" href="https://www.facebook.com/alan.prado.9674/posts/1000469453398659">Ajude-nos a divulgar este jogo! :)</a>
 	</body>
 </html>

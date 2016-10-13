@@ -2,45 +2,32 @@
 	TAGS
 */
 
-.container {
-    width: 800px;
-    height: 600px;
-    display: block;
-    //
-    border: 2px solid #2196F3;
-    background: url("../charset/bcg.png");
-    background-size: cover;
-    /* background-position-x: -260px; */
+@font-face {
+    font-family: EU;
+    src: url(editundo.ttf);
 }
-
-.container button {
-    height: 50px;
-    width: 355px;
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    border: 4px solid;
-    background: white;
-    outline: 0px;
-    color: #000000;
-    cursor: pointer;
-    font-weight: bold;
-}
-
 
 * {
-    font-family: "Helvetica";
-    margin: 0px;
-}
-
-html {
-    -webkit-text-size-adjust: none;
+    font-family: "EU","Helvetica";
+	image-rendering: pixelated;
+	-ms-interpolation-mode: nearest-neighbor;
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: -webkit-crisp-edges;
+	image-rendering: -moz-crisp-edges;
+	image-rendering: -o-crisp-edges;
+	image-rendering: pixelated;
 }
 
 body {
 	margin: 0px;
 	background : black;
 	overflow : hidden;
+	background: #5b5f66;
+	background: #5b5f66;
+	background: -moz-linear-gradient(-45deg, #5b5f66 0%, #191919 100%);
+	background: -webkit-linear-gradient(-45deg, #5b5f66 0%,#191919 100%);
+	background: linear-gradient(135deg, #5b5f66 0%,#191919 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b5f66', endColorstr='#191919',GradientType=1 );
 }
 
 game{
@@ -48,6 +35,7 @@ game{
     width: 800px;
     height: 600px;
 	left : calc(calc(100% - 800px)/2);
+	top: calc(calc(100% - 600px)/2);
 }
 
 mini{
@@ -56,7 +44,7 @@ mini{
     width: 800px;
     height: 600px;
 	overflow : hidden;
-	z-index : 4;
+	z-index : 3;
 }
 
 gui{
@@ -65,7 +53,7 @@ gui{
     width: 800px;
     height: 600px;
 	overflow : hidden;
-	z-index : 2;
+	z-index : 4;
 }
 
 sprite{
@@ -97,7 +85,7 @@ msgBox{
     min-width: 480px;
     min-height: 135px;
     height: 22.5%;
-    background-color: hsla(0, 0%, 22%, 1);
+    background-color: hsla(0, 0%, 32%, 1);
     position: absolute;
     text-align: center;
     margin: auto;
@@ -128,7 +116,7 @@ conquista {
     position: absolute;
 	width : 300px;
     right: 0px;
-    top: 0px;
+    top: -200px;
 	-webkit-animation: achieviment 5s;
     animation: achieviment 5s;
 }
@@ -151,6 +139,7 @@ scene{
 	position : absolute;
 	background-position-y: 68px;
 	background-repeat: no-repeat;
+	z-index : 0;
 }
 
 smart{
@@ -161,7 +150,6 @@ smart{
     background-repeat: no-repeat;
     background-size: contain;
     left: calc(50% - 225px);
-	z-index : 3;
 }
 
 screen{
@@ -211,7 +199,6 @@ canvas {
     background-color: #f1f1f1;
 	width : 800px;
 	height : 600px;
-	z-index : 2;
 	position : absolute;
 }
 	
@@ -231,6 +218,26 @@ mini div.DragContainer{
 	position: relative;
 	width: 473px;
 	height: 190px;
+}
+
+mini table{
+	position : absolute;
+	left : calc(calc(100% - 595px) / 2);
+	top : calc(calc(100% - 595px) / 2);
+	background-color : white;
+}
+mini td{
+	width: 85px;
+	height: 85px; 
+	padding : 0px;
+	border-collapse: collapse;
+    border-spacing: 0px;
+	background-size: contain;
+}
+
+mini td img{
+	width: 100px;
+	height: 100px; 
 }
 
 div.pattern{
@@ -254,8 +261,8 @@ div.pattern{
 	position: absolute;
 	left: 0px;
 	margin: 3.4%;
-	width: 102;
-	height: 102;
+	width: 102px;
+	height: 102px;
 }
 
 #achivicon{
@@ -275,6 +282,32 @@ div.pattern{
 /*
 	CLASS
 */
+
+.container {
+    width: 800px;
+    height: 600px;
+    display: block;
+    //
+    border: 2px solid #2196F3;
+    background: url(http://i.imgur.com/8vHl4LG.png);
+    background-size: cover;
+    background-size: contain;
+}
+
+.container button {
+    height: 50px;
+    width: 355px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 3px solid #ffffff;
+    /* border-radius: 12px; */
+    background: none;
+    outline: 0px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
 
 .selected {
 	background-color : #bfd3ff;

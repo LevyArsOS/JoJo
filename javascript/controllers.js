@@ -7,9 +7,7 @@ var u_up = false;
 	u_right = false,
     right = false,
 	u_action = false,
-	action = false,
-	u_esq = false,
-    esq = false;
+	action = false;
 	
 document.onkeyup = secundario;
 function secundario (event) {
@@ -34,10 +32,6 @@ function secundario (event) {
 			action = false;
 			u_action = false;
 			break;
-		case 27:
-			esq = false;
-			u_esq = false;
-			break;
     }
 };
 
@@ -60,9 +54,6 @@ function principal(event) {
             break;
 		case actionKey:
 			action = true;
-			break;
-		case 27:
-			esq = true;
 			break;
     }
 };

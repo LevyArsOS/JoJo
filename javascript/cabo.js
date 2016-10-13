@@ -59,12 +59,14 @@ function mov(n){
 		setTimeout(
 			function(){
 				quests[8] = 1;
-				pause = false;
+				pauseP = false;
 				while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
 					document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
 				}
 				document.onkeydown = principal;
 				document.getElementsByTagName("head")[0].removeChild(script);
+				audio.src = './music/02_Failien_Funk.ogg';
+				audio.play();
 			}, 50);	
 	}
 }

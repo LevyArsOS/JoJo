@@ -9,11 +9,11 @@ var clicked1,clicked2,typeOfClicked1;
 document.onmousedown= click;
 
 function startGame() {
-    titulo1 = new component("18px", "Consolas", "black", 400, 95,"text");
+    titulo1 = new component("14px", "Consolas", "black", 270, 105,"text");
     titulo1.text= "Todos esses animais implementam a interface Animal e sobrescrevem "
-    titulo2 = new component("18px", "Consolas", "black", 435, 115,"text");
-    titulo2.text= "o método \"emitir som\". Mas qual som cada um vai emitir?";
-    cenario = new component(960, 540, "", 0, 0, "image");
+    titulo2 = new component("14px", "Consolas", "black", 300, 125,"text");
+    titulo2.text= "o mÃ©todo \"emitir som\". Mas qual som cada um vai emitir?";
+    cenario = new component(800, 600, "", 0, 0, "image");
     cenario.setImage("./charset/will/cenario.png");
     animais.push(new component(80, 80, "red", Math.floor(myGameArea.width/3*2-50+150), 100, "image"));
     animais[0].setImage("./charset/will/doge.png");
@@ -47,8 +47,8 @@ function startGame() {
 
 var myGameArea = {
     canvas : document.createElement("canvas"),
-    width: 960,
-    height: 540,
+    width: 800,
+    height: 600,
     update: 0,
     win: 0,
     start : function() {
@@ -112,9 +112,7 @@ function component(width, height, color, x, y, type) {
                 ctx.fillText(this.text, this.x, this.y);
                 break;
             case "image":
-                //alert(this.img.src);
                 ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-                //alert("desenhou");
                 break;
             default:
                 ctx.fillStyle = this.color;
@@ -123,7 +121,6 @@ function component(width, height, color, x, y, type) {
     }
     this.setImage = function(newImage) {
         this.img= document.createElement('img');
-        //alert(newImage);
         this.img.src= newImage;/*
         this.img.onload= function() {
                                         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
@@ -135,6 +132,7 @@ function click(e) {
     var x,y,clicked;
     var typeOfClicked= "none";
     //Detectar coordenadas do click
+	
     if (e.pageX || e.pageY) { 
       x = e.pageX;
       y = e.pageY;
@@ -145,7 +143,10 @@ function click(e) {
     }
     x -= myGameArea.canvas.offsetLeft;
     y -= myGameArea.canvas.offsetTop;
-    
+	
+	x -= (window.innerWidth-800)/2;
+	y -= (window.innerHeight-600)/2;
+	
     if ( (x>=(sons[0].x)) && (x<=(sons[0].x+50)) ) {
         for (i=0; i<sons.length; i++) {
             if (y>=(sons[i].y-15) && y<=(sons[i].y+5)) {
@@ -162,37 +163,39 @@ function click(e) {
             }
         }
     }
-    //Ligar
-    if (!clicked.solutioned) {
-        if (typeOfClicked=="som") {
-            switch(typeOfClicked1) {
-                case "som":
-                    clicked1= clicked;
-                    break;
-                case "animal":
-                    clicked2= clicked;
-                    connect();
-                    break;
-                default:
-                    clicked1= clicked;
-                    typeOfClicked1= "som";
-            }
-        }
-        if (typeOfClicked=="animal") {
-            switch(typeOfClicked1) {
-                case "som":
-                    clicked2= clicked;
-                    connect();
-                    break;
-                case "animal":
-                    clicked1= clicked;
-                    break;
-                default:
-                    clicked1= clicked;
-                    typeOfClicked1= "animal"; 
-            }
-        }
-    }
+	
+	if(clicked !== undefined && clicked !== null && !pause){		
+		if (!clicked.solutioned) {
+			if (typeOfClicked=="som") {
+				switch(typeOfClicked1) {
+					case "som":
+						clicked1= clicked;
+						break;
+					case "animal":
+						clicked2= clicked;
+						connect();
+						break;
+					default:
+						clicked1= clicked;
+						typeOfClicked1= "som";
+				}
+			}
+			if (typeOfClicked=="animal") {
+				switch(typeOfClicked1) {
+					case "som":
+						clicked2= clicked;
+						connect();
+						break;
+					case "animal":
+						clicked1= clicked;
+						break;
+					default:
+						clicked1= clicked;
+						typeOfClicked1= "animal"; 
+				}
+			}
+		}
+	}
 }
 
 function connect() {
@@ -223,7 +226,17 @@ function connect() {
         typeOfClicked1= "none";
     }
     else {
-        location.reload();
+		clearInterval(myGameArea.update);
+        clearInterval(myGameArea.win);
+        quests[3] = 1;
+		pauseP = false;
+		while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
+			document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
+		}
+		document.onkeydown = principal;
+		document.onkeyup = secundario;
+		document.onmousedown = function(){};
+		document.getElementsByTagName("head")[0].removeChild(script);
     }
 }
 
@@ -236,7 +249,15 @@ function win() {
     if (solutioned==4) {
         clearInterval(myGameArea.update);
         clearInterval(myGameArea.win);
-        alert("Venceu");
+        quests[3] = 2;
+		pauseP = false;
+		while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
+			document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
+		}
+		document.onkeydown = principal;
+		document.onkeyup = secundario;
+		document.getElementsByTagName("head")[0].removeChild(script);
+		document.onmousedown = function(){};
     }
 }
 

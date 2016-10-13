@@ -1,47 +1,61 @@
 var lastFrameTimeMs = 0,
 	delta = 0,
-	timestep = 2000 / 60,
+	timestep = 1000 / 60,
 	numUpdateSteps = 0;
 	
 var fps = 60,
     framesThisSecond = 0,
     lastFpsUpdate = 0;
+	
+var layer0 = [],
+	layer1 = [];
 
-var scene = [];
+var reset_up = false,
+	reset_down = false,
+	reset_left = false,
+	reset_right = false,
+	reset_action = false,
+	reset_saiu = false;
 
+var objects = [];
+
+var gui,
+	mini,
+	game;
+	
 var painel = new function(){
 	this.entrar = function(){
 		
 	};
 };
-
-var reset_up = false;
-var reset_down = false;
-var reset_left = false;
-var reset_right = false;
-var reset_action = false;
-var reset_esq = false;
-var reset_saiu = false;
-
-var objects = [];
+function initialize(){
+	audio.pause();
+	game = document.getElementsByTagName("game")[0];
+	gui = new Gui();
+	mini = document.getElementsByTagName("mini")[0];
+	gui.setVisible(false);
+	window.requestAnimationFrame(main);
+	loadScene(2, 2);
+	setTimeout(function (){
+		audio.src = './music/02_Failien_Funk.ogg';
+		audio.play();
+		gui.setVisible(false);
+		objects.push(new msgBox(5, function (){
+			mapa[0] = 2;
+			mapa[1] = 2;
+		}, 0));
+		mini = document.getElementsByTagName("mini")[0];
+		game = document.getElementsByTagName("game")[0];
+	},200);
+}
 
 function main(timestamp){
 	
-	if (timestamp < lastFrameTimeMs + (2000 / maxFPS)) {
+	if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
         requestAnimationFrame(main);
         return;
     }
 	
-	if(esq && !u_esq){
-		if(!pause){
-			u_esq = true;
-			pause = true;
-			painel = new menu();
-		}else{
-			u_esq = true;
-			painel.pad.click();
-		}
-	}
 	if(pause){
 		if(up && !u_up){
 			u_up = true;
@@ -99,13 +113,6 @@ function main(timestamp){
 		}, 2000);
 		reset_action = true;
 	}
-	if(u_esq && !reset_esq){
-		setTimeout(function(){
-			u_esq = false;
-			reset_esq =false;
-		}, 2000);
-		reset_esq = true;
-	}
 	
 	if(saiu && !reset_saiu){
 		setTimeout(function(){
@@ -121,19 +128,10 @@ function main(timestamp){
 	else{
 		delta = 0;
 	}
-    lastFrameTimeMs = timestamp;
 	
-	if (timestamp > lastFpsUpdate + 2000) {
-        fps = 0.25 * framesThisSecond + (1 - 0.25) * fps;
- 
-        lastFpsUpdate = timestamp;
-        framesThisSecond = 0;
-    }
-    framesThisSecond++;
-	
-    while (delta >= timestep) {
+	while (delta >= timestep) {
 		for(i = 0; i < objects.length; i++){
-			if(!pauseP || !(objects[i] instanceof player)){
+			if((!pauseP || !(objects[i] instanceof player)) && objects[i] !== null && objects[i] !== undefined){
 				objects[i].update(timestep);
 			}
 		}
@@ -143,9 +141,30 @@ function main(timestamp){
             break;
         }
     }
-	document.getElementsByTagName('FPS')[0].textContent = Math.round(fps) + ' FPS';
+	
+	lastFrameTimeMs = timestamp;
+	
+	if(showFPS){
+		
+		if (timestamp > lastFpsUpdate + 2000) {
+			fps = 0.25 * framesThisSecond + (1 - 0.25) * fps;
+	 
+			lastFpsUpdate = timestamp;
+			framesThisSecond = 0;
+		}
+		framesThisSecond++;
+		
+		if(gui.visible){
+			gui.setVisible(true);
+		}
+		
+		if(document.getElementsByTagName('FPS')[0] !== null && document.getElementsByTagName('FPS')[0] !== undefined){
+			gui.documentGui.getElementsByTagName('FPS')[0].textContent = Math.round(fps) + ' FPS';
+		}else{
+			gui.append(document.createElement("FPS"));
+			gui.documentGui.getElementsByTagName('FPS')[0].textContent = Math.round(fps) + ' FPS';
+		}
+		
+	}
 	window.requestAnimationFrame(main);
 }
-
-window.requestAnimationFrame(main);
-

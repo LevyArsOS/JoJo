@@ -5,6 +5,7 @@ var myScore;
 var myCenario;
 var obstacleCount;
 var lastShotTime;
+var tiro;
 document.onkeydown = evento;
 document.onkeyup = killMove;
 
@@ -18,6 +19,7 @@ function startGame() {
 	obstacleCount= 0;
 	myScore = new component("30px", "Consolas", "black", 280, 40, "text");
 	myGameArea.start();
+	tiro = new Audio("./soundfx/shoot.wav");
 }
 
 var myGameArea = {
@@ -137,27 +139,38 @@ function updateGameArea() {
 		if (myGamePiece.crashWith(myObstacles[i])) {
 			clearInterval(myGameArea.update);
 			clearInterval(myGameArea.win);
+			audio.pause();
 			quests[9] = 1;
-			pause = false;
 			while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
 				document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
 			}
 			document.onkeydown = principal;
 			document.onkeyup = secundario;
 			document.getElementsByTagName("head")[0].removeChild(script);
+			setTimeout(function () {
+				audio.src = './music/02_Failien_Funk.ogg';
+				audio.play();
+				u_action = true;
+				pauseP = false;
+			}, 200);
 			return;
 		}
 		if (myObstacles[i].x<=10) {
 			clearInterval(myGameArea.update);
 			clearInterval(myGameArea.win);
 			quests[9] = 1;
-			pause = false;
 			while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
 				document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
 			}
 			document.onkeydown = principal;
 			document.onkeyup = secundario;
 			document.getElementsByTagName("head")[0].removeChild(script);
+			setTimeout(function () {
+				audio.src = './music/02_Failien_Funk.ogg';
+				audio.play();
+				u_action = true;
+				pauseP = false;
+			}, 200);
 			return
 		}
 	}
@@ -201,7 +214,7 @@ function updateGameArea() {
 	myCenario.update();
 	for (i = 0; i<myShots.length; i++) {
 		myShots[i].x++;
-		if (myObstacles[i].x>=x) {
+		if (myShots[i].x>=x) {
 			myShots[i].delete();
 			myShots.splice(i,1);
 		}
@@ -227,30 +240,31 @@ function accelerate(n) {
 	myGamePiece.gravity = n;
 }
 function killMove(e) {
-	if (e.keyCode == 38 || e.keyCode == 40) {
+	if (e.keyCode == upKey || e.keyCode == downKey) {
 		myGamePiece.gravity = 0;
 		myGamePiece.gravitySpeed = 0;
 	}
 }
 function evento(e) {
 	//Seta cima
-	if (e.keyCode == 38) {
+	if (e.keyCode == upKey) {
 		accelerate(-0.07);
 		//setTimeout(killMove,500);
 	}
-	//Seta baixo
-	if (e.keyCode == 40) {
+	
+	if (e.keyCode == downKey) {
 		accelerate(0.07);
 		//setTimeout(killMove,500);
 	}
-	//seta direita
-	if (e.keyCode == 39) {
+	
+	if (e.keyCode == actionKey) {
 		if (lastShotTime==0) {
 			newShot= new component(10,3,"",40,myGamePiece.y+14,"image");
 			newShot.setImage("./charset/gil/PaoDeQueijo.png");
 			myShots.push(newShot);
+			tiro.play();
 			lastShotTime= 5;
-			myGameArea.shots = setInterval(shotFrequency,55);
+			myGameArea.shots = setInterval(shotFrequency,120);
 		}
 	}
 }
@@ -261,15 +275,21 @@ function shotFrequency() {
 }
 function win() {
 	if (myGameArea.kills>=100) {
+		audio.pause();
 		clearInterval(myGameArea.update);
 		clearInterval(myGameArea.win);
-		quests[9] = 1;
-		pause = false;
+		quests[9] = 2;
 		while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
 			document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
 		}
 		document.onkeydown = principal;
 		document.onkeyup = secundario;
 		document.getElementsByTagName("head")[0].removeChild(script);
+		setTimeout(function (){
+			audio.src = './music/02_Failien_Funk.ogg';
+			audio.play();
+			u_action = true;
+			pauseP = false;
+		}, 200);
 	}
 }

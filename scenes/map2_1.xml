@@ -1,0 +1,46 @@
+<xml>
+	<resolution><X>306</X><Y>272</Y></resolution>
+	<coords>
+		<cord dir='[1,0,1,0]'><X>1</X><Y>4</Y></cord>
+		<cord dir='[0,0,1,0]'><X>1</X><Y>5</Y></cord>
+		<cord dir='[0,1,1,0]'><X>1</X><Y>6</Y></cord>
+		<cord dir='[1,0,1,0]'><X>2</X><Y>1</Y></cord>
+		<cord dir='[0,0,1,0]'><X>2</X><Y>2</Y></cord>
+		<cord dir='[0,0,1,0]'><X>2</X><Y>3</Y></cord>
+		<cord dir='[0,1,0,0]'><X>2</X><Y>6</Y></cord>
+		<cord dir='[1,0,0,1]'><X>3</X><Y>1</Y></cord>
+		<cord dir='[0,1,0,0]'><X>3</X><Y>6</Y></cord>
+		<cord dir='[0,0,1,0]'><X>4</X><Y>2</Y></cord>
+		<cord dir='[0,0,1,0]'><X>4</X><Y>3</Y></cord>
+		<cord dir='[0,1,1,0]'><X>4</X><Y>4</Y></cord>
+		<cord dir='[0,1,0,0]'><X>4</X><Y>6</Y></cord>
+		<cord dir='[1,0,0,1]'><X>5</X><Y>5</Y></cord>
+		<cord dir='[0,1,0,0]'><X>5</X><Y>6</Y></cord>
+		<cord dir='[1,1,0,0]'><X>6</X><Y>6</Y></cord>
+		<cord dir='[1,0,0,0]'><X>7</X><Y>6</Y></cord>
+		<cord dir='[0,1,1,0]'><X>7</X><Y>7</Y></cord>
+		<cord dir='[0,1,0,0]'><X>7</X><Y>8</Y></cord>
+		<cord dir='[1,1,0,0]'><X>8</X><Y>6</Y></cord>
+		<cord dir='[0,1,0,0]'><X>8</X><Y>8</Y></cord>
+		<cord dir='[1,1,0,1]'><X>9</X><Y>6</Y></cord>
+		<cord dir='[1,1,1,1]'><X>9</X><Y>7</Y></cord>
+		<cord dir='[0,1,0,1]'><X>9</X><Y>8</Y></cord>
+	</coords>
+	<ents>
+		<ent><X>8</X><Y>7</Y><id>5</id><dir>left</dir></ent>
+	</ents>
+	<objs>
+		<obj><X>3</X><Y>1</Y><id>1</id></obj>
+	</objs>
+	
+	<entradas>
+		<player><X>4</X><Y>6</Y><dir>down</dir></player>
+		<player><X>5</X><Y>6</Y><dir>down</dir></player>
+		<player><X>7</X><Y>7</Y><dir>right</dir></player>
+	</entradas>
+	
+	<saidas>
+		<saida><X>4</X><Y>5</Y><dir>1</dir><entrada>1</entrada></saida>
+		<saida><X>5</X><Y>5</Y><dir>3</dir><entrada>0</entrada></saida>
+	</saidas>
+</xml>

@@ -5,6 +5,9 @@ var myScore;
 var myCenarios = [];
 var obstacleCount;
 
+var pulo;
+var queda;
+
 function startGame() {
 	document.onkeydown = jump;
     newCenario = new component(480, 270, "", 0, 0, "image");
@@ -19,6 +22,8 @@ function startGame() {
     obstacleCount = 0;
     myScore = new component("30px", "Consolas", "black", 280, 40, "text");
     myGameArea.start();
+	pulo = new Audio("./soundfx/jump.wav");
+	queda = new Audio("./soundfx/hurt.wav");
 }
 
 var myGameArea = {
@@ -131,16 +136,19 @@ function updateGameArea() {
     var x, height, minHeight, maxHeight;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
+			queda.play();
 			clearInterval(myGameArea.update);
 			clearInterval(myGameArea.maxY);
 			clearInterval(myGameArea.win);
-			quests[1] = -1;
+			quests[1] = 1;
 			while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
 				document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
 			}
-			pause = false;
+			pauseP = false;
 			document.onkeydown = principal;
 			document.getElementsByTagName("head")[0].removeChild(script);
+			audio.src = './music/02_Failien_Funk.ogg';
+			audio.play();
             return;
         }
     }
@@ -151,11 +159,29 @@ function updateGameArea() {
         minHeight = 40;
         maxHeight = 100;
         height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+		var rand = Math.round(Math.random()*3);
         if (obstacleCount<450) {
-            newObstacle= new component(30, height, "green", x, myGameArea.canvas.height-height, "image");
-            newObstacle.setImage("./charset/vivas/cone.png");
-        	myObstacles.push(newObstacle);
-        	obstacleCount++;
+			if(rand == 0){
+				newObstacle= new component(30, 40, "green", x, myGameArea.canvas.height-40, "image");
+				newObstacle.setImage("./charset/vivas/cone2.png");
+				myObstacles.push(newObstacle);
+				obstacleCount++;
+			}else if(rand == 1){
+				newObstacle= new component(30, 40, "green", x, myGameArea.canvas.height-40, "image");
+				newObstacle.setImage("./charset/vivas/cone1.png");
+				myObstacles.push(newObstacle);
+				obstacleCount++;
+			} else if(rand == 2){
+				newObstacle= new component(30, 70, "green", x, myGameArea.canvas.height-70, "image");
+				newObstacle.setImage("./charset/vivas/pare.png");
+				myObstacles.push(newObstacle);
+				obstacleCount++;
+			} else if(rand == 3){
+				newObstacle= new component(40, 100, "green", x, myGameArea.canvas.height-100, "image");
+				newObstacle.setImage("./charset/vivas/tree.png");
+				myObstacles.push(newObstacle);
+				obstacleCount++;
+			}
     	}
     }
     for (i=0; i<myCenarios.length; i++) {
@@ -189,11 +215,14 @@ function accelerate(n) {
     myGamePiece.gravity = n;
 }
 function jump(e) {
-    if (e.keyCode == 38 && myGamePiece.y>= (myGameArea.canvas.height-1-myGamePiece.height) )  {
+    if (e.keyCode == upKey && myGamePiece.y>= (myGameArea.canvas.height-1-myGamePiece.height) )  {
         accelerate(-0.05);
         setTimeout(accelerate,500,0.04);
+		if(pulo.paused){
+			pulo.play();
+		}
     }
-	if (e.keyCode == 40)
+	if (e.keyCode == downKey)
 		accelerate(5);
 }
 function maxY() {
@@ -206,13 +235,15 @@ function win() {
 		clearInterval(myGameArea.update);
 		clearInterval(myGameArea.maxY);
 		clearInterval(myGameArea.win);
-		quests[1] = 1;
-		pause = false;
 		while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
 			document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
 		}
 		document.onkeydown = principal;
 		document.getElementsByTagName("head")[0].removeChild(script);
-		achievement(1);
+		loadScene(5,0);
+		audio.src = './music/02_Failien_Funk.ogg';
+		audio.play();
+		pauseP = false;
+		quests[1] = 1;
 	}
 }

@@ -6,8 +6,16 @@
 				<fala>Jovem, precisava cortar algumas caixas para o "Decom Celebrations", </fala>
 				<fala>mas infelizmente perdi minha coleção de facas.</fala>
 				<fala>Pode me ajudar a acha-las?</fala>
-				<fala>Encontre as 4 facas do Mafforte espalhadas pelo Decom.</fala>
 			</falas>
+			<falas>
+				<fala>Não posso começar sem ter todas as facas.</fala>
+			</falas>
+			<falas>
+				<fala>Obrigado por acha-las por mim.</fala>
+			</falas>
+			<inst>
+				<mission>Colete as 4 facas do Mafforte espalhadas pelo Decom e as devolva.</mission>
+			</inst>
 		</character>
 		<character>
 			<nome>Frabício Mortes</nome>
@@ -15,22 +23,48 @@
 				<fala>Opa, cê ta bom? Preciso que leve esse PC pro outro prédio,</fala>
 				<fala>é para o evento. Um amigo meu estará  esperando.</fala>
 				<fala>Isso mesmo, você está certíssimo, bata na porta.</fala>
-				<fala>Atravesse o campus e entregue o PC.</fala>
 			</falas>
+			<falas>
+				<fala>Não fique triste por ter deixado o computador cair e quebrar</fala>
+				<fala>ainda tenho outros, só preciso que você os leve.</fala>
+			</falas>
+			<falas>
+				<fala>Ha! ha! ha! ha! ....</fala>
+			</falas>
+			<inst>
+				<mission>Atravesse o campus e entregue o PC.</mission>
+				<mission>Use os controles 'w' e 's' para pular e cair, respectivamente.</mission>
+			</inst>
 		</character>
 		<character>
 			<nome>Apaula de Delson</nome>
 			<falas>
-				<fala>Seja menos HUB e mais Switch em sua vida.</fala>
+				<fala>Estamos precisando conectar os computadores que seram usados no evento com uma conexão ponto a ponto.</fala>
+				<fala>Você poderia me ajudar a ligar os computadores?</fala>
 			</falas>
+			<falas>
+				<fala>Obrigado pela ajuda.</fala>
+			</falas>
+			<inst>
+				<mission>Use o mouse  para conectar os computadores com o cabo de rede.</mission>
+			</inst>
 		</character>
 		<character>
 			<nome>Zé William</nome>
 			<falas>
 				<fala>Oi, você pode me ajudar com esse programa para a festa?</fala>
 				<fala>Lembre-se, a vaca faz au au.</fala>
-				<fala>Complete o desafio do Zé William.</fala>
 			</falas>
+			<falas>
+				<fala>Estava errado, faça de novo.</fala>
+			</falas>
+			<falas>
+				<fala>Obrigado pela ajuda.</fala>
+			</falas>
+			<inst>
+				<mission>Ligue o animal ao seu respectivo som.</mission>
+				<mission>Para conecta-los clique na palavra e depois no animal, ou vice-versa.</mission>
+			</inst>
 		</character>
 		<character>
 			<nome>Wilson Salum</nome>
@@ -41,13 +75,30 @@
 				<fala>Brincadeirinha, hehe.</fala>
 				<fala>Procure no w3schools tudo sobre web.</fala>
 			</falas>
+			<falas>
+				<fala>Hehe, liste para mim as linguagens para web,</fala>
+			</falas>
+			<inst>
+				<mission>Procure o par de cada imagem nesse jogo da memoria</mission>
+			</inst>
 		</character>
 		<character>
 			<nome>Gilvia</nome>
 			<falas>
 				<fala>Então, espero que você tenha lido o slide do Dropbox sobre hoje. Precisamos da sua ajuda para</fala>
-				<fala>organizar a festa de 10 anos do DECOM. Fale com os professores e os ajude no que precisarem.</fala>
+				<fala>organizar a festa de 10 anos do DECOM. Ajude os professores para garantir o sucesso do evento.</fala>
+				<fala>Estarei no auditorio</fala>
 			</falas>
+			<falas>
+				<fala>Ainda bem que você apareceu, estou precisando de ajuda para encher os balões e enfeitar o local</fala>
+			</falas>
+			<falas>
+				<fala>Não se preocupe, ainda temos muitos balões para encher</fala>
+			</falas>
+			<falas>
+				<fala>Obrigada pela ajuda.</fala>
+			</falas>
+			<mission>Aperte o espaço para encher o balão até, no minimo 60 pontos.</mission>
 		</character>
 		<character>
 			<nome>Marquinhos Pradão</nome>
@@ -55,6 +106,7 @@
 				<fala>Eai cara! Aqui ta tudo beleza, mas vai procurar outros professores, tem gente precisando</fala>
 				<fala>da sua ajuda. tie estas mia DECOM! E não esquece de cuidar do seu xuxu hein.</fala>
 			</falas>
+			<mission></mission>
 		</character>
 		<character>
 			<nome>Edson Marqueteiro</nome>
@@ -62,22 +114,38 @@
 				<fala>Você fica ai sem fazer as missões,</fala>
 				<fala>depois o cachorro passa e vc não.</fala>
 			</falas>
+			<mission></mission>
 		</character>
 		<character>
 			<nome>T.H. Iago</nome>
 			<falas>
-				<fala>Branco e verde, verde, branco e laranja, azul, branco e azul, laranja, branco e marrom, marrom.</fala>
-				<fala>estou sem criatividade para escrever mais</fala>
+				<fala>Estou precisando de cabos para conectar o resto dos computadores. Você poderia me ajudar a crimpa-los?</fala>
+				<fala>Lembre-se, o padrão T-568A é : branco e verde, verde, branco e laranja, azul, branco e azul, laranja, banco e marrom, marrom.</fala>
+				<fala>Já o padrão T-568B é : branco e laranja, laranja, branco e verde, azul, branco e azul, verde, banco e marrom, marrom.</fala>
 			</falas>
+			<falas>
+				<fala>Muito bom, já temos uma das pontas, só falta o resto todo</fala>
+			</falas>
+			<mission> Ordene os fios do cabo de rede de acordo com o padrão indicado. Para ordenalos, clique e arrate os cabos para a posição desejada. </mission>
 		</character>
 		<character>
 			<nome>Gilar</nome>
 			<falas>
 				<fala>Programador dessa geração! Proteja o Decom dos agentes da guuglu.</fala>
 				<fala>Eles querem os códigos dos jogos e não podemos deixar!</fala>
-				<fala>Na minha época a google não nos espionava.</fala>
-				<fala>Controle Gilar e derrote a guuglu atirando pão de queijo.</fala>
+				<fala>Na minha época a guuglu não nos espionava.</fala>
 			</falas>
+			<falas>
+				<fala>Por sorte, haviam professores defendendo o lado de dentro do prédio,</fala>
+				<fala>mas ainda não é tempo de descançar, mais espiões da guugle estão vindo.</fala>
+				<fala>Me ajude a dete-los de uma vez por todas</fala>
+			</falas>
+			<falas>
+				<fala>Obrigado pela ajuda,espero que agora a guuglu não volte mais.</fala>
+			</falas>
+			<inst>
+				<mission>Controle Gilar e derrote a guuglu atirando pão de queijo.</mission>
+			</inst>
 		</character>
 		<character>
 			<nome>Amigo do Mortes</nome>
@@ -85,6 +153,7 @@
 				<fala>Cobertíssimo de razão, fois ludibriado. Esse PC velho não serve pra nada.</fala>
 				<fala>Leva de volta,vai.</fala>
 			</falas>
+			<mission> Levar o computador de volta. </mission>
 		</character>
 	</characters>
 	<achievements>

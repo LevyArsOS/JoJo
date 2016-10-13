@@ -5,8 +5,6 @@ function player(x, y, direction){
 	this.x = x;
 	this.y = y;
 	
-	scene[x][y] = this;
-	
 	this.real_x = x*68;
 	this.real_y = y*68;
 	
@@ -19,47 +17,71 @@ function player(x, y, direction){
 	this.sprite.style.top = this.real_y -34 + "px";
 	this.sprite.style.left = this.real_x + "px";
 	
+	if(this.direction == "up"){
+			this.sprite.style.backgroundPositionY = "-68px";
+			this.superior.style.backgroundPositionY = "-68px";
+		} else if(this.direction == "down"){
+			this.sprite.style.backgroundPositionY = "0px";
+			this.superior.style.backgroundPositionY = "0px";
+		} else if(this.direction == "left"){
+			this.sprite.style.backgroundPositionY = "-204px";
+			this.superior.style.backgroundPositionY = "-204px";
+		} else if(this.direction == "right"){
+			this.sprite.style.backgroundPositionY = "-136px";
+			this.superior.style.backgroundPositionY = "-136px";
+		}
+	
 	this.sprite.appendChild(this.superior);
 	document.getElementById('game').appendChild(this.sprite);
 	
 	document.getElementById('game').scrollTop = this.real_y - 266;
 	document.getElementById('game').scrollLeft = this.real_x - 366;
 	
-	if(this.direction == "up"){
-		this.sprite.style.backgroundPositionY = "-68px";
-		this.superior.style.backgroundPositionY = "-68px";
-	} else if(this.direction == "down"){
-		this.sprite.style.backgroundPositionY = "0px";
-		this.superior.style.backgroundPositionY = "0px";
-	} else if(this.direction == "left"){
-		this.sprite.style.backgroundPositionY = "-204px";
-		this.superior.style.backgroundPositionY = "-204px";
-	} else if(this.direction == "right"){
-		this.sprite.style.backgroundPositionY = "-136px";
-		this.superior.style.backgroundPositionY = "-136px";
-	}
-	
 	this.update = function (delta) {
 		if(action == true && u_action == false){
 			switch(this.direction){
 				case "up":
-					if(scene[this.x][this.y-1] instanceof basicIA || scene[this.x][this.y-1] instanceof coletaveis){
-						scene[this.x][this.y-1].interaction();
+					if((layer0[this.x][this.y] instanceof colision && !layer0[this.x][this.y].up) || (layer0[this.x][this.y-1] instanceof colision && !layer0[this.x][this.y-1].down) || (!(layer0[this.x][this.y] instanceof colision) && !(layer0[this.x][this.y-1] instanceof colision))){
+						if(layer1[this.x][this.y-1] instanceof basicIA){
+							layer1[this.x][this.y-1].changeDirection("down");
+							layer1[this.x][this.y-1].interaction();
+						}
+						if(layer1[this.x][this.y-1] instanceof coletaveis){
+							layer1[this.x][this.y-1].interaction();
+						}
 					}
 					break;
 				case "down":
-					if(scene[this.x][this.y+1] instanceof basicIA || scene[this.x][this.y+1] instanceof coletaveis){
-						scene[this.x][this.y+1].interaction();
+					if((layer0[this.x][this.y] instanceof colision && !layer0[this.x][this.y].down) || (layer0[this.x][this.y+1] instanceof colision && !layer0[this.x][this.y+1].up) || (!(layer0[this.x][this.y] instanceof colision) && !(layer0[this.x][this.y+1] instanceof colision))){
+						if(layer1[this.x][this.y+1] instanceof basicIA){
+							layer1[this.x][this.y+1].changeDirection("up");
+							layer1[this.x][this.y+1].interaction();
+						}
+						if(layer1[this.x][this.y+1] instanceof coletaveis){
+							layer1[this.x][this.y+1].interaction();
+						}
 					}
 					break
 				case "left":
-					if(scene[this.x-1][this.y] instanceof basicIA || scene[this.x-1][this.y] instanceof coletaveis){
-						scene[this.x-1][this.y].interaction();
+					if((layer0[this.x][this.y] instanceof colision && !layer0[this.x][this.y].left) || (layer0[this.x-1][this.y] instanceof colision && !layer0[this.x-1][this.y].right) || (!(layer0[this.x][this.y] instanceof colision) && !(layer0[this.x-1][this.y] instanceof colision))){
+						if(layer1[this.x-1][this.y] instanceof basicIA){
+							layer1[this.x-1][this.y].changeDirection("right");
+							layer1[this.x-1][this.y].interaction();
+						}
+						if(layer1[this.x-1][this.y] instanceof coletaveis){
+							layer1[this.x-1][this.y].interaction();
+						}
 					}
 					break;
 				case "right":
-					if(scene[this.x+1][this.y] instanceof basicIA || scene[this.x+1][this.y] instanceof coletaveis){
-						scene[this.x+1][this.y].interaction();
+					if((layer0[this.x][this.y] instanceof colision && !layer0[this.x][this.y].right) || (layer0[this.x+1][this.y] instanceof colision && !layer0[this.x+1][this.y].left) || (!(layer0[this.x][this.y] instanceof colision) && !(layer0[this.x][this.y+1] instanceof colision))){
+						if(layer1[this.x+1][this.y] instanceof basicIA){
+							layer1[this.x+1][this.y].changeDirection("left");
+							layer1[this.x+1][this.y].interaction();
+						}
+						if(layer1[this.x+1][this.y] instanceof coletaveis){
+							layer1[this.x+1][this.y].interaction();
+						}
 					}
 					break;
 			}
@@ -71,13 +93,30 @@ function player(x, y, direction){
 				this.sprite.style.backgroundPositionY = "-68px";
 				this.superior.style.backgroundPositionY = "-68px";
 			}
-			if(this.y > 0 && (scene[this.x][this.y-1] instanceof saida)){
-				scene[this.x][this.y-1].interaction();
+			if(this.y > 0 && (layer0[this.x][this.y-1] instanceof saida)){
+				layer0[this.x][this.y-1].interaction();
 			}
-			if(this.y > 0 && !(scene[this.x][this.y-1] instanceof colision) && !(scene[this.x][this.y-1] instanceof basicIA)&& !(scene[this.x][this.y-1] instanceof coletaveis) && !(scene[this.x][this.y-1] instanceof saida)){
-				scene[this.x][this.y] = scene[this.x][this.y-1];
-				scene[this.x][this.y-1] = this;
-				this.y--;
+			if(this.y > 0 && !(layer1[this.x][this.y-1] instanceof basicIA) && !(layer1[this.x][this.y-1] instanceof coletaveis) && !(layer0[this.x][this.y-1] instanceof saida)){
+				if(layer0[this.x][this.y-1] instanceof colision){
+					if(!layer0[this.x][this.y-1].down){
+						if(layer0[this.x][this.y] instanceof colision){
+							if(!layer0[this.x][this.y].up){
+								this.y--;
+							}
+						}else{
+							this.y--;
+						}
+					}
+				}
+				else{
+					if(layer0[this.x][this.y] instanceof colision){
+						if(!layer0[this.x][this.y].up){
+							this.y--;
+						}
+					}else {
+						this.y--;
+					}
+				}
 			}
 		}else if(down == true && this.real_y == this.y*68 && this.real_x == this.x*68){
 			if(this.direction !== "down"){
@@ -85,13 +124,30 @@ function player(x, y, direction){
 				this.sprite.style.backgroundPositionY = "0px";
 				this.superior.style.backgroundPositionY = "0px";
 			}
-			if(this.y < scene[this.x].length-1 && (scene[this.x][this.y+1] instanceof saida)){
-				scene[this.x][this.y+1].interaction();
+			if(this.y < layer0[this.x].length-1 && (layer0[this.x][this.y+1] instanceof saida)){
+				layer0[this.x][this.y+1].interaction();
 			}
-			if(this.y < scene[this.x].length-1 && !(scene[this.x][this.y+1] instanceof colision) && !(scene[this.x][this.y+1] instanceof basicIA)&& !(scene[this.x][this.y+1] instanceof coletaveis)&& !(scene[this.x][this.y+1] instanceof saida)){
-				scene[this.x][this.y] = scene[this.x][this.y+1];
-				scene[this.x][this.y+1] = this;
-				this.y++;
+			if(this.y < layer0[this.x].length-1 && !(layer1[this.x][this.y+1] instanceof basicIA) && !(layer1[this.x][this.y+1] instanceof coletaveis) && !(layer0[this.x][this.y+1] instanceof saida)){
+				if(layer0[this.x][this.y+1] instanceof colision){
+					if(!layer0[this.x][this.y+1].up){
+						if(layer0[this.x][this.y] instanceof colision){
+							if(!layer0[this.x][this.y].down){
+								this.y++;
+							}
+						}else{
+							this.y++;
+						}
+					}
+				}
+				else{
+					if(layer0[this.x][this.y] instanceof colision){
+						if(!layer0[this.x][this.y].down){
+							this.y++;
+						}
+					}else {
+						this.y++;
+					}
+				}
 			}
 		}else if(left == true && this.real_y == this.y*68 && this.real_x == this.x*68){
 			if(this.direction !== "left"){
@@ -99,13 +155,30 @@ function player(x, y, direction){
 				this.sprite.style.backgroundPositionY = "-204px";
 				this.superior.style.backgroundPositionY = "-204px";
 			}
-			if(this.x > 0 && (scene[this.x-1][this.y] instanceof saida)){
-				scene[this.x-1][this.y].interaction();
+			if(this.x > 0 && (layer0[this.x-1][this.y] instanceof saida)){
+				layer0[this.x-1][this.y].interaction();
 			}
-			if(this.x > 0 && !(scene[this.x-1][this.y] instanceof colision)  && !(scene[this.x-1][this.y] instanceof basicIA)&& !(scene[this.x-1][this.y] instanceof coletaveis)&& !(scene[this.x-1][this.y] instanceof saida)){
-				scene[this.x][this.y] = scene[this.x -1][this.y];
-				scene[this.x-1][this.y] = this;
-				this.x--;
+			if(this.x > 0 && !(layer1[this.x-1][this.y] instanceof basicIA) && !(layer1[this.x-1][this.y] instanceof coletaveis) && !(layer0[this.x-1][this.y] instanceof saida)){
+				if(layer0[this.x-1][this.y] instanceof colision){
+					if(!layer0[this.x-1][this.y].right){
+						if(layer0[this.x][this.y] instanceof colision){
+							if(!layer0[this.x][this.y].left){
+								this.x--;
+							}
+						}else{
+							this.x--;
+						}
+					}
+				}
+				else{
+					if(layer0[this.x][this.y] instanceof colision){
+						if(!layer0[this.x][this.y].left){
+							this.x--;
+						}
+					}else {
+						this.x--;
+					}
+				}
 			}
 		}else if(right == true && this.real_y == this.y*68 && this.real_x == this.x*68){
 			if(this.direction !== "right"){
@@ -113,13 +186,30 @@ function player(x, y, direction){
 				this.sprite.style.backgroundPositionY = "-136px";
 				this.superior.style.backgroundPositionY = "-136px";
 			}
-			if(this.x < scene.length-1 && (scene[this.x+1][this.y] instanceof saida)){
-				scene[this.x+1][this.y].interaction();
+			if(this.x < layer0.length-1 && (layer0[this.x+1][this.y] instanceof saida)){
+				layer0[this.x+1][this.y].interaction();
 			}
-			if(this.x < scene.length-1 && !(scene[this.x+1][this.y] instanceof colision) && !(scene[this.x+1][this.y] instanceof basicIA)&& !(scene[this.x+1][this.y] instanceof coletaveis)&& !(scene[this.x+1][this.y] instanceof saida)){
-				scene[this.x][this.y] = scene[this.x+1][this.y];
-				scene[this.x+1][this.y] = this;
-				this.x++;
+			if(this.x < layer0.length-1 && !(layer1[this.x+1][this.y] instanceof basicIA) && !(layer1[this.x+1][this.y] instanceof coletaveis) && !(layer0[this.x+1][this.y] instanceof saida)){
+				if(layer0[this.x+1][this.y] instanceof colision){
+					if(!layer0[this.x+1][this.y].left){
+						if(layer0[this.x][this.y] instanceof colision){
+							if(!layer0[this.x][this.y].right){
+								this.x++;
+							}
+						}else{
+							this.x++;
+						}
+					}
+				}
+				else{
+					if(layer0[this.x][this.y] instanceof colision){
+						if(!layer0[this.x][this.y].right){
+							this.x++;
+						}
+					}else {
+						this.x++;
+					}
+				}
 			}
 		}
 		
@@ -154,18 +244,17 @@ function player(x, y, direction){
 	};
 }
 
-function air(){
-	
+function colision(up, down, left, right){
+	this.up = up;
+	this.down = down;
+	this.left = left;
+	this.right = right;
 }
 
-function colision(){
-
-}
-
-function basicIA(x,y,id){
+function basicIA(x,y,id, direc){
 	this.x = x;
 	this.y = y;
-	
+	this.direc = direc;
 	this.real_x = x*68;
 	this.real_y = y*68;
 	
@@ -174,15 +263,30 @@ function basicIA(x,y,id){
 	this.sprite.style.backgroundImage = "url('./charset/profs.png')";
 	this.superior.style.backgroundImage = "url('./charset/profs.png')";
 	
-	this.sprite.style.backgroundSize = "136px";
-	this.superior.style.backgroundSize = "136px";
+	this.sprite.style.backgroundSize = "272px";
+	this.superior.style.backgroundSize = "272px";
 	
-	if(id % 2 == 1){
-		this.sprite.style.backgroundPositionX = "-68px";
-		this.superior.style.backgroundPositionX = "-68px";
+	this.changeDirection = function (direction){
+		this.direc = direction;
+		if(this.direc == "up"){
+			this.sprite.style.backgroundPositionX = "-204px";
+			this.superior.style.backgroundPositionX = "-204px";
+		} else if(this.direc == "down"){
+			this.sprite.style.backgroundPositionX = "0px";
+			this.superior.style.backgroundPositionX = "0px";
+		} else if(this.direc == "left"){
+			this.sprite.style.backgroundPositionX = "-68px";
+			this.superior.style.backgroundPositionX = "-68px";
+		} else if(this.direc == "right"){
+			this.sprite.style.backgroundPositionX = "-136px";
+			this.superior.style.backgroundPositionX = "-136px";
+		}
 	}
-	this.sprite.style.backgroundPositionY = -68*Math.floor(id/2) + "px";
-	this.superior.style.backgroundPositionY = -68*Math.floor(id/2) + "px";
+	
+	this.changeDirection(this.direc);
+	
+	this.sprite.style.backgroundPositionY = -68*id + "px";
+	this.superior.style.backgroundPositionY = -68*id + "px";
 	
 	this.sprite.style.top = this.real_y -34 + "px";
 	this.sprite.style.left = this.real_x + "px";
@@ -191,29 +295,83 @@ function basicIA(x,y,id){
 	document.getElementById('game').appendChild(this.sprite);
 	
 	this.interaction = function (){
-		if(quests[id] == 0){
-			if(id == 0){
-				i = faca[0] + faca[1] + faca[2] + faca[3];
-				
-				if(i == 4){
-					if(quests[0] != 1){
-						achievement(3);
-						quests[0] = 1;
+		action = false;
+		if(id == 0){
+			i = faca[0] + faca[1] + faca[2] + faca[3];
+			
+			if(i == 4){				
+				achievement(3);
+				quests[0] = 2;
+				objects.push(new msgBox(id, function(){}, 2));
+			}else{
+				if(quests[0] == 0){
+					if(faca[0] == -1){
+						objects.push(new msgBox(id, function(){faca = [0,0,0,0]}, 0));
 					}
-				}else{
-					if(quests[0] == 0){
-						objects.push(new msgBox(id, function(){}));
-					}
+					quests[0] = 1;
+				}else if(quests[0] == 1){
+					objects.push(new msgBox(id, function(){}, 1));
 				}
-			}else if(id == 1){
-				objects.push(new msgBox(id, vivasMini));
 			}
-			else if(id == 9){
-				objects.push(new msgBox(id, gilmarMini));
+		}else if(id == 1){
+			if(quests[1] == 0){
+				objects.push(new msgBox(id, vivasMini, 0));
+			}else if(quests[1] == 2){
+				objects.push(new msgBox(id, function (){}, 2));
+			}else{
+				objects.push(new msgBox(id, vivasMini, 1));
 			}
-			else{
-				objects.push(new msgBox(id, function(){}));
+		}else if(id == 2){
+			if(quests[2] == 0){
+				objects.push(new msgBox(id, paulaMini, 0));
+			}else{
+				objects.push(new msgBox(id, function(){}, 1));
 			}
+		}else if(id == 3){
+			if(quests[3] == 0){
+				objects.push(new msgBox(id, willianMini, 0));
+			}else{
+				objects.push(new msgBox(id, function (){}, 2));
+			}
+		}else if(id == 4){
+			if(quests[4] == 0){
+				objects.push(new msgBox(id, joseMini, 0));
+			}else{
+				objects.push(new msgBox(id, function(){}, 1));
+			}
+		}else if(id == 5){
+			if(quests[5] == 0){
+				objects.push(new msgBox(id, gliviaMini, 1));
+			}else if(quests[5] == 2){
+				objects.push(new msgBox(id, function (){}, 3));
+			}else{
+				objects.push(new msgBox(id, gliviaMini, 2));
+			}
+		}else if(id == 6){
+			objects.push(new msgBox(id, function (){}, 0));
+		}else if(id == 7){
+			objects.push(new msgBox(id, function (){}, 0));
+		}else if(id == 8){
+			if(quests[8] == 0){
+				objects.push(new msgBox(id, caboMini, 0));
+			}else{
+				objects.push(new msgBox(id, function (){}, 2));
+			}
+		}else if(id == 9){
+			if(quests[9] == 0){
+				objects.push(new msgBox(id, gilmarMini, 0));
+			}else if(quests[9] == 2){
+				objects.push(new msgBox(id, function (){}, 2));
+			}else{
+				objects.push(new msgBox(id, gilmarMini, 1));
+			}
+		}else if(id == 10){
+			quests[1] = 1;
+			objects.push(new msgBox(id, function(){achievement(1)}, 0));
+			quests[10] = 1;
+		}
+		else{
+			objects.push(new msgBox(id, function(){}, 0));
 		}
 	}
 }
@@ -224,6 +382,8 @@ function coletaveis(x,y,id){
 	
 	this.real_x = x*68;
 	this.real_y = y*68;
+	
+	this.sound = new Audio('./soundfx/pickupfaca.wav')
 	
 	this.sprite = document.createElement("sprite");
 	this.superior = document.createElement("superior");
@@ -247,18 +407,19 @@ function coletaveis(x,y,id){
 	document.getElementById('game').appendChild(this.sprite);
 	
 	this.interaction = function (){
+		this.sound.play();
 		achievement(id+4);
 		faca[id] = 1;
 		document.getElementById('game').removeChild(this.sprite);
-		scene[x][y] = new colision();
+		layer0[x][y] = null;
 	}
 }
 
-function saida(id){
+function saida(id, entrada){
 	this.interaction = function (){
 		if(!saiu){
 			saiu = true;
-			loadScene(id);
+			loadScene(id, entrada);
 		}
 	}
 }
