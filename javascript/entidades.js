@@ -330,6 +330,8 @@ function basicIA(x,y,id, direc){
 		}else if(id == 3){
 			if(quests[3] == 0){
 				objects.push(new msgBox(id, willianMini, 0));
+			}else if(quests[3] == 1){
+				objects.push(new msgBox(id, willianMini, 1));
 			}else{
 				objects.push(new msgBox(id, function (){}, 2));
 			}
@@ -367,7 +369,13 @@ function basicIA(x,y,id, direc){
 			}
 		}else if(id == 10){
 			quests[1] = 1;
-			objects.push(new msgBox(id, function(){achievement(1)}, 0));
+			objects.push(new msgBox(id, function(){
+				achievement(1);
+				var victory = new Audio("./soundfx/missioncomplete.wav");
+				setTimeout(function () {
+					victory.play();
+				});
+			}, 0));
 			quests[10] = 1;
 		}
 		else{

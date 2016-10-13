@@ -54,7 +54,7 @@ function clicked(n){
 						}
 						document.getElementsByTagName("head")[0].removeChild(script);
 						var victory = new Audio("./soundfx/missioncomplete.wav");
-						setTimeout({
+						setTimeout(function (){
 							victory.play();
 						},200);
 					}

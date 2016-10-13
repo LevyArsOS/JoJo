@@ -285,7 +285,9 @@ function win() {
 		document.onkeydown = principal;
 		document.onkeyup = secundario;
 		document.getElementsByTagName("head")[0].removeChild(script);
+		var victory = new Audio("./soundfx/missioncomplete.wav");
 		setTimeout(function (){
+			victory.play();
 			audio.src = './music/02_Failien_Funk.ogg';
 			audio.play();
 			u_action = true;

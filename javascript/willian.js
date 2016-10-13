@@ -258,6 +258,10 @@ function win() {
 		document.onkeyup = secundario;
 		document.getElementsByTagName("head")[0].removeChild(script);
 		document.onmousedown = function(){};
+		var victory = new Audio("./soundfx/missioncomplete.wav");
+				setTimeout(function () {
+					victory.play();
+				});
     }
 }
 

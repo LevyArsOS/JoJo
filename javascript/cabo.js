@@ -66,7 +66,11 @@ function mov(n){
 				document.onkeydown = principal;
 				document.getElementsByTagName("head")[0].removeChild(script);
 				audio.src = './music/02_Failien_Funk.ogg';
-				audio.play();
+				var victory = new Audio("./soundfx/missioncomplete.wav");
+				setTimeout(function () {
+					audio.play();
+					victory.play();
+				});
 			}, 50);	
 	}
 }
