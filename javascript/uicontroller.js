@@ -43,6 +43,7 @@ function msgBox(id, callback, sit){
 	this.action = false;
 	
 	this.talk = new Audio("./soundfx/talk.wav");
+	this.talk.volume = 0.5;
 	this.talk.loop = true;
 	
 	this.box = document.createElement("msgBox");
@@ -123,6 +124,7 @@ function msgBox(id, callback, sit){
 					
 				}else{
 					gui.setVisible(false);
+					this.talk.pause();
 					for(i = 0; i < objects.length; i++){
 						if(objects[i] === this){
 							objects.splice(i,1);

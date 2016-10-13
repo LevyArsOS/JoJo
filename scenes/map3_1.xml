@@ -22,7 +22,7 @@
 		<cord dir='[0,1,0,0]'><X>5</X><Y>6</Y></cord>
 		<cord dir='[0,1,0,1]'><X>5</X><Y>8</Y></cord>
 		<cord dir='[1,1,0,0]'><X>6</X><Y>6</Y></cord>
-		<cord dir='[0,1,0,1]'><X>6</X><Y>7</Y></cord>
+		<cord dir='[1,1,0,1]'><X>6</X><Y>7</Y></cord>
 		<cord dir='[1,1,0,0]'><X>7</X><Y>6</Y></cord>
 		<cord dir='[1,1,0,0]'><X>8</X><Y>6</Y></cord>
 		<cord dir='[1,1,0,1]'><X>9</X><Y>6</Y></cord>

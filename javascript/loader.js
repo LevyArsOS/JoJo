@@ -245,7 +245,7 @@ function loadScene(id, entrada){
 				document.getElementById('game').removeChild(document.getElementsByTagName("scene")[0]);
 			}
 			while(document.getElementsByTagName("sprite").length != 0){
-				document.getElementById('game').removeChild(document.getElementsByTagName("sprite")[0]);
+				document.getElementById('game').removeChild(document.getElementById('game').getElementsByTagName("sprite")[0]);
 			}
 			var cena = document.createElement("scene");
 			var tam = {x : parseInt(xml.getElementsByTagName("resolution")[0].getElementsByTagName("X")[0].childNodes[0].nodeValue), y : parseInt(xml.getElementsByTagName("resolution")[0].getElementsByTagName("Y")[0].childNodes[0].nodeValue)};
