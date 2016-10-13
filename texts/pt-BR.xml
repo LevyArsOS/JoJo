@@ -120,8 +120,8 @@
 			<nome>T.H. Iago</nome>
 			<falas>
 				<fala>Estou precisando de cabos para conectar o resto dos computadores. Você poderia me ajudar a crimpa-los?</fala>
-				<fala>Lembre-se, o padrão T-568A é : branco e verde, verde, branco e laranja, azul, branco e azul, laranja, banco e marrom, marrom.</fala>
-				<fala>Já o padrão T-568B é : branco e laranja, laranja, branco e verde, azul, branco e azul, verde, banco e marrom, marrom.</fala>
+				<fala>Lembre-se, o padrão T-568A é : branco e verde; verde; branco e laranja; azul; branco e azul; laranja; banco e marrom; marrom.</fala>
+				<fala>Já o padrão T-568B é : branco e laranja; laranja; branco e verde; azul; branco e azul; verde; banco e marrom; marrom.</fala>
 			</falas>
 			<falas>
 				<fala>Muito bom, já temos uma das pontas, só falta o resto todo</fala>

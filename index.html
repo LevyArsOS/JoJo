@@ -15,14 +15,14 @@
 		<script src="javascript/uicontroller.js"></script>
 		<script src="javascript/main.js"></script>
 	</head>
-	<body>
+	<body onload = "document.getElementById('bt').onclick = function () {setTimeout(function(){initialize();}, 1000);}">
 		<game>
 			<div id="game">
 			</div>
 			<gui>
 				<div class="container">
 					<div style="height: 600px;padding-top: 379px;box-sizing: border-box;">
-						<button onclick="setTimeout(function(){initialize();}, 1000);">INICIAR JOGO</button>
+						<button id='bt'>INICIAR JOGO</button>
 					</div>
 				</div>
 			</gui>
