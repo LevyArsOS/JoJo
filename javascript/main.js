@@ -69,7 +69,10 @@ function main(timestamp){
 	if(quests[0] + quests[1] + quests[2] + quests[3] + quests[4] + quests[5] + quests[6] + quests[7] + quests[8] + quests[9] + quests[10] == 14){
 		gui.append(document.createElement('parabens'));
 		gui.setVisible(true);
+		document.onkeyup = null;
+		document.onkeydown = null;
 		setTimeout(function(){location.reload(true)}, 5000);
+		return;
 	}
 	
 	if(pause){

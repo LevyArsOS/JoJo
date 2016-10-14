@@ -260,11 +260,8 @@ function win() {
 		document.onkeydown = null;
 		document.onkeyup = null;
 		var victory = new Audio("./soundfx/missioncomplete.wav");
-			victory.volume = volumeE;
-			
-		gui.append(document.createElement("sucesso"));
-		gui.setVisible(true);
-		setTimeout(function(){victory.play();}, 1000);
+		victory.volume = volumeE;
+		setTimeout(function(){victory.play();}, 500);
 		setTimeout(function (){
 			audio.src = './music/02_Failien_Funk.ogg';
 			audioCtr = setInterval(function (){
@@ -282,7 +279,7 @@ function win() {
 			u_action = true;
 			pauseP = false
 			loadScene(5,0);
-		}, 2000);
+		}, 1000);
 		
 		quests[1] = 1;
 	}
