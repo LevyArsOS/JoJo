@@ -20,6 +20,7 @@ function startGame() {
 	myScore = new component("30px", "Consolas", "black", 280, 40, "text");
 	myGameArea.start();
 	tiro = new Audio("./soundfx/shoot.wav");
+	tiro.volume = volumeE;
 }
 
 var myGameArea = {
@@ -141,36 +142,62 @@ function updateGameArea() {
 			clearInterval(myGameArea.win);
 			audio.pause();
 			quests[9] = 1;
-			while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-				document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-			}
-			document.onkeydown = principal;
-			document.onkeyup = secundario;
-			document.getElementsByTagName("head")[0].removeChild(script);
-			setTimeout(function () {
+			document.onkeydown = null;
+			document.onkeyup = null;
+			var victory = new Audio("./soundfx/missionfail.wav");
+			victory.volume = volumeE;
+			gui.append(document.createElement("falha"));
+			gui.setVisible(true);
+			setTimeout(function(){victory.play();}, 1000);
+			setTimeout(function (){
+				gui.setVisible(false);
+				document.getElementsByTagName("mini")[0].innerHTML = "";
+				document.getElementsByTagName("head")[0].removeChild(script);
+				document.onkeydown = principal;
+				document.onkeyup = secundario;
 				audio.src = './music/02_Failien_Funk.ogg';
-				audio.play();
+				audioCtr = setInterval(function (){
+					if(audio.paused){
+						audio.play();
+						clearInterval(audioCtr);
+					}
+				}, 200);
+				action = false;
 				u_action = true;
 				pauseP = false;
-			}, 200);
+			}, 2000);
+			
 			return;
 		}
 		if (myObstacles[i].x<=10) {
+			audio.pause();
 			clearInterval(myGameArea.update);
 			clearInterval(myGameArea.win);
 			quests[9] = 1;
-			while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-				document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-			}
-			document.onkeydown = principal;
-			document.onkeyup = secundario;
-			document.getElementsByTagName("head")[0].removeChild(script);
-			setTimeout(function () {
+			document.onkeydown = null;
+			document.onkeyup = null;
+			var victory = new Audio("./soundfx/missionfail.wav");
+			victory.volume = volumeE;
+			gui.append(document.createElement("falha"));
+			gui.setVisible(true);
+			setTimeout(function(){victory.play();}, 1000);
+			setTimeout(function (){
+				gui.setVisible(false);
+				document.getElementsByTagName("mini")[0].innerHTML = "";
+				document.getElementsByTagName("head")[0].removeChild(script);
+				document.onkeydown = principal;
+				document.onkeyup = secundario;
 				audio.src = './music/02_Failien_Funk.ogg';
-				audio.play();
+				audioCtr = setInterval(function (){
+					if(audio.paused){
+						audio.play();
+						clearInterval(audioCtr);
+					}
+				}, 200);
+				action = false;
 				u_action = true;
 				pauseP = false;
-			}, 200);
+			}, 2000);
 			return
 		}
 	}
@@ -264,7 +291,7 @@ function evento(e) {
 			myShots.push(newShot);
 			tiro.play();
 			lastShotTime= 5;
-			myGameArea.shots = setInterval(shotFrequency,120);
+			myGameArea.shots = setInterval(shotFrequency,100);
 		}
 	}
 }
@@ -279,19 +306,31 @@ function win() {
 		clearInterval(myGameArea.update);
 		clearInterval(myGameArea.win);
 		quests[9] = 2;
-		while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-			document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-		}
-		document.onkeydown = principal;
-		document.onkeyup = secundario;
-		document.getElementsByTagName("head")[0].removeChild(script);
+		
+		document.onkeydown = null;
+		document.onkeyup = null;
+		
 		var victory = new Audio("./soundfx/missioncomplete.wav");
+		victory.volume = volumeE;
+		gui.append(document.createElement("sucesso"));
+		gui.setVisible(true);
+		setTimeout(function(){victory.play();}, 1000);
 		setTimeout(function (){
-			victory.play();
+			gui.setVisible(false);
+			document.getElementsByTagName("mini")[0].innerHTML = "";
+			document.getElementsByTagName("head")[0].removeChild(script);
+			document.onkeydown = principal;
+			document.onkeyup = secundario;
 			audio.src = './music/02_Failien_Funk.ogg';
-			audio.play();
+			audioCtr = setInterval(function (){
+				if(audio.paused){
+					audio.play();
+					clearInterval(audioCtr);
+				}
+			}, 200);
+			action = false;
 			u_action = true;
 			pauseP = false;
-		}, 200);
+		}, 2000);
 	}
 }

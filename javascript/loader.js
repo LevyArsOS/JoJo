@@ -1,15 +1,17 @@
 var xmlDoc;
 var loading = false;
 
-var achievements = [0,0,0,0,0,0,0];
+var achievements = [0,0,0,0,0,0,0,0];
 
-var quests = [0,0,0,0,0,0,0,0,0,0, 0];
+var quests = [0,0,0,0,0,0,0,0,0,0,0];
 
 var mapa = [1,1,1,1,1];
 
 var faca = [-1,-1,-1,-1];
 
 var script;
+
+var audioCtr;
 
 loadFalas();
 
@@ -31,9 +33,12 @@ function joseMini(){
 	document.getElementsByTagName("head")[0].appendChild(script);
 	pauseP = true;
 	u_action = true;
-	setTimeout(function (){
-		audio.src = './music/03_Stroll_n_Roll.ogg';
-		audio.play();
+	audio.src = './music/03_Stroll_n_Roll.ogg';
+	audioCtr = setInterval(function (){
+		if(audio.paused){
+			audio.play();
+			clearInterval(audioCtr);
+		}
 	}, 200);
 }
 
@@ -43,19 +48,22 @@ function gliviaMini(){
 	script.type= 'text/javascript';
 	script.onreadystatechange= function () {
 		if (this.readyState == 'complete') {
-			document.getElementsByTagName('mini')[0].innerHTML = '  <div id="telaBalao" style="    height: 100%;    background-color: transparent;">  <img id="bg" src="./charset/balao/bgBalao.png" style="    width: 800;height: 600px;image-rendering: pixelated;z-index: -4;position: absolute;">    <img id="balao" src="./charset/balao/balao.png" style="    width: 48px;height: 60px;image-rendering: pixelated;z-index: 0;position: absolute;top: 68px;left: 306px;">    <img id="bomba" src="./charset/balao/bomba2.png" style="width: 148;height: 116px;image-rendering: pixelated;z-index: -1;position: absolute;top: 369px;left: 426px;"><img id="garoto" src="./charset/balao/garoto2.png" style="    z-index: -2;width: 125;height: 165px;image-rendering: pixelated;position: absolute;top: 272px;left: 480px;">  <img id="suor" src="./charset/balao/suor.png" style="    z-index: -2;width: 32px;height: 32px;image-rendering: pixelated;position: absolute;top: 269px;left: 589px;visibility: hidden;">  <div id="Placar" style=" float: right;position: absolute;letter-spacing: 5px;">    <h2>Pontos: <span id="pontos">0</span></h2><h2>  </h2></div></div><div id="relogio" style="    position: absolute;    top: 0;    left: 527px;    font-size: 36;    /* color: black; */">  <div id="tempo" style="    top: 30;    position: absolute;    font-size: 72;">0</div></div>';
+			document.getElementsByTagName('mini')[0].innerHTML = '  <div id="telaBalao" style="    height: 100%;    background-color: transparent;">  <img id="bg" src="./charset/balao/bgBalao.png" style="    width: 800;height: 600px;image-rendering: pixelated;z-index: -4;position: absolute;">    <img id="balao" src="./charset/balao/balao.png" style="    width: 48px;height: 60px;image-rendering: pixelated;z-index: 0;position: absolute;top: 308px;left: 402px;">    <img id="bomba" src="./charset/balao/bomba2.png" style="width: 148;height: 116px;image-rendering: pixelated;z-index: -1;position: absolute;top: 369px;left: 426px;"><img id="garoto" src="./charset/balao/garoto2.png" style="    z-index: -2;width: 125;height: 165px;image-rendering: pixelated;position: absolute;top: 272px;left: 480px;">  <img id="suor" src="./charset/balao/suor.png" style="    z-index: -2;width: 32px;height: 32px;image-rendering: pixelated;position: absolute;top: 269px;left: 589px;visibility: hidden;">  <div id="Placar" style=" float: right;position: absolute;letter-spacing: 5px;">    <h2>Pontos: <span id="pontos">0</span></h2><h2>  </h2></div></div><div id="relogio" style="    position: absolute;    top: 0;    left: 527px;    font-size: 36;    /* color: black; */">  <div id="tempo" style="    top: 30;    position: absolute;    font-size: 72;">0</div></div>';
 		}
 	}
 	script.onload = function () {
-		document.getElementsByTagName('mini')[0].innerHTML = '  <div id="telaBalao" style="    height: 100%;    background-color: transparent;">  <img id="bg" src="./charset/balao/bgBalao.png" style="    width: 800;height: 600px;image-rendering: pixelated;z-index: -4;position: absolute;">    <img id="balao" src="./charset/balao/balao.png" style="    width: 48px;height: 60px;image-rendering: pixelated;z-index: 0;position: absolute;top: 68px;left: 306px;">    <img id="bomba" src="./charset/balao/bomba2.png" style="width: 148;height: 116px;image-rendering: pixelated;z-index: -1;position: absolute;top: 369px;left: 426px;"><img id="garoto" src="./charset/balao/garoto2.png" style="    z-index: -2;width: 125;height: 165px;image-rendering: pixelated;position: absolute;top: 272px;left: 480px;">  <img id="suor" src="./charset/balao/suor.png" style="    z-index: -2;width: 32px;height: 32px;image-rendering: pixelated;position: absolute;top: 269px;left: 589px;visibility: hidden;">  <div id="Placar" style=" float: right;position: absolute;letter-spacing: 5px;">    <h2>Pontos: <span id="pontos">0</span></h2><h2>  </h2></div></div><div id="relogio" style="    position: absolute;    top: 0;    left: 527px;    font-size: 36;    /* color: black; */">  <div id="tempo" style="    top: 30;    position: absolute;    font-size: 72;">0</div></div>';
+		document.getElementsByTagName('mini')[0].innerHTML = '  <div id="telaBalao" style="    height: 100%;    background-color: transparent;">  <img id="bg" src="./charset/balao/bgBalao.png" style="    width: 800;height: 600px;image-rendering: pixelated;z-index: -4;position: absolute;">    <img id="balao" src="./charset/balao/balao.png" style="    width: 48px;height: 60px;image-rendering: pixelated;z-index: 0;position: absolute;top: 308px;left: 402px;">    <img id="bomba" src="./charset/balao/bomba2.png" style="width: 148;height: 116px;image-rendering: pixelated;z-index: -1;position: absolute;top: 369px;left: 426px;"><img id="garoto" src="./charset/balao/garoto2.png" style="    z-index: -2;width: 125;height: 165px;image-rendering: pixelated;position: absolute;top: 272px;left: 480px;">  <img id="suor" src="./charset/balao/suor.png" style="    z-index: -2;width: 32px;height: 32px;image-rendering: pixelated;position: absolute;top: 269px;left: 589px;visibility: hidden;">  <div id="Placar" style=" float: right;position: absolute;letter-spacing: 5px;">    <h2>Pontos: <span id="pontos">0</span></h2><h2>  </h2></div></div><div id="relogio" style="    position: absolute;    top: 0;    left: 527px;    font-size: 36;    /* color: black; */">  <div id="tempo" style="    top: 30;    position: absolute;    font-size: 72;">0</div></div>';
 	};
 	script.src= './javascript/balao.js';
 	document.getElementsByTagName("head")[0].appendChild(script);
 	pauseP = true;
 	u_action = true;
-	setTimeout(function (){
-		audio.src = './music/03_Stroll_n_Roll.ogg';
-		audio.play();
+	audio.src = './music/03_Stroll_n_Roll.ogg';
+	audioCtr = setInterval(function (){
+		if(audio.paused){
+			audio.play();
+			clearInterval(audioCtr);
+		}
 	}, 200);
 }
 
@@ -70,9 +78,12 @@ function vivasMini(){
 	document.getElementsByTagName("head")[0].appendChild(script);
 	pauseP = true;
 	u_action = true;
-	setTimeout(function (){
-		audio.src = './music/04_Shell_Shock_Shake.ogg';
-		audio.play();
+	audio.src = './music/04_Shell_Shock_Shake.ogg';
+	audioCtr = setInterval(function (){
+		if(audio.paused){
+			audio.play();
+			clearInterval(audioCtr);
+		}
 	}, 200);
 }
 
@@ -88,9 +99,12 @@ function gilmarMini(){
 	document.getElementsByTagName("head")[0].appendChild(script);
 	pauseP = true;
 	u_action = true;
-	setTimeout(function (){
-		audio.src = './music/05_Im_a_Fighter.ogg';
-		audio.play();
+	audio.src = './music/05_Im_a_Fighter.ogg';
+	audioCtr = setInterval(function (){
+		if(audio.paused){
+			audio.play();
+			clearInterval(audioCtr);
+		}
 	}, 200);
 }
 
@@ -106,9 +120,12 @@ function willianMini(){
 	document.getElementsByTagName("head")[0].appendChild(script);
 	pauseP = true;
 	u_action = true;
-	setTimeout(function (){
-		audio.src = './music/03_Stroll_n_Roll.ogg';
-		audio.play();
+	audio.src = './music/03_Stroll_n_Roll.ogg';
+	audioCtr = setInterval(function (){
+		if(audio.paused){
+			audio.play();
+			clearInterval(audioCtr);
+		}
 	}, 200);
 }
 
@@ -130,9 +147,12 @@ function paulaMini(){
 	document.getElementsByTagName("head")[0].appendChild(script);
 	pauseP = true;
 	u_action = true;
-	setTimeout(function (){
-		audio.src = './music/03_Stroll_n_Roll.ogg';
-		audio.play();
+	audio.src = './music/03_Stroll_n_Roll.ogg';
+	audioCtr = setInterval(function (){
+		if(audio.paused){
+			audio.play();
+			clearInterval(audioCtr);
+		}
 	}, 200);
 }
 
@@ -197,9 +217,12 @@ function caboMini(){
 	document.getElementsByTagName("head")[0].appendChild(script);
 	pauseP = true;
 	u_action = true;
-	setTimeout(function (){
-		audio.src = './music/08_Filaments_and_Voids	.ogg';
-		audio.play();
+	audio.src = './music/08_Filaments_and_Voids	.ogg';
+	audioCtr = setInterval(function (){
+		if(audio.paused){
+			audio.play();
+			clearInterval(audioCtr);
+		}
 	}, 200);
 }
 
@@ -242,10 +265,10 @@ function loadScene(id, entrada){
 			parser = new DOMParser();
 			var xml = parser.parseFromString(http.responseText, "text/xml");
 			if(document.getElementsByTagName("scene").length != 0){
-				document.getElementById('game').removeChild(document.getElementsByTagName("scene")[0]);
+				document.getElementById('game').innerHTML = "";
 			}
 			while(document.getElementsByTagName("sprite").length != 0){
-				document.getElementById('game').removeChild(document.getElementById('game').getElementsByTagName("sprite")[0]);
+				document.getElementById('game').innerHTML = "";
 			}
 			var cena = document.createElement("scene");
 			var tam = {x : parseInt(xml.getElementsByTagName("resolution")[0].getElementsByTagName("X")[0].childNodes[0].nodeValue), y : parseInt(xml.getElementsByTagName("resolution")[0].getElementsByTagName("Y")[0].childNodes[0].nodeValue)};

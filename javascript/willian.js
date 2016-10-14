@@ -230,9 +230,7 @@ function connect() {
         clearInterval(myGameArea.win);
         quests[3] = 1;
 		pauseP = false;
-		while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-			document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-		}
+		document.getElementsByTagName("mini")[0].innerHTML = "";
 		document.onkeydown = principal;
 		document.onkeyup = secundario;
 		document.onmousedown = function(){};
@@ -250,18 +248,22 @@ function win() {
         clearInterval(myGameArea.update);
         clearInterval(myGameArea.win);
         quests[3] = 2;
-		pauseP = false;
-		while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-			document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-		}
-		document.onkeydown = principal;
-		document.onkeyup = secundario;
-		document.getElementsByTagName("head")[0].removeChild(script);
-		document.onmousedown = function(){};
+		document.onmousedown = null;
+		gui.append(document.createElement("sucesso"));
+		gui.setVisible(true);
 		var victory = new Audio("./soundfx/missioncomplete.wav");
-				setTimeout(function () {
-					victory.play();
-				});
+		victory.volume = volumeE;
+		setTimeout(function(){victory.play();}, 1000);
+		setTimeout(function () {
+			gui.setVisible(false);
+			document.getElementsByTagName("mini")[0].innerHTML = "";
+			document.getElementsByTagName("head")[0].removeChild(script);
+			document.onkeydown = principal;
+			document.onkeyup = secundario;
+			action = false;
+			u_action = true;
+			pauseP = false;
+		}, 2000);
     }
 }
 

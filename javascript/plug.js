@@ -51,33 +51,6 @@ function gameStart(){
 	var game_number = Math.floor(Math.random()*5);
 	var cur_game = [];
 	
-	/*function next_game(){
-		game_number++;
-		if(game_number < game.length){
-			path = [[],[],[],[],[],[],[],[]];
-			cur_color = 0;
-			last_sqr = 0;
-			cur_game = [];
-			for (i = 0; i <mini.getElementsByTagName("td").length; i++){
-	       	 	mini.getElementsByTagName("td")[i].style.backgroundColor = color_rgb[game[game_number][last_sqr]];
-				if(color_rgb[game[game_number][last_sqr]] != "#FFFFFF"){
-					mini.getElementsByTagName("td")[i].style.backgroundImage = 'url(charset/plug/PC.png)';
-					mini.getElementsByTagName("td")[i].style.backgroundRepeat = 'no-repeat';
-					mini.getElementsByTagName("td")[i].style.backgroundPositionY = '11px';
-					mini.getElementsByTagName("td")[i].style.backgroundPositionX = '3px';
-				}else{
-					mini.getElementsByTagName("td")[i].style.backgroundImage = '';
-					mini.getElementsByTagName("td")[i].style.backgroundRepeat = '';
-					mini.getElementsByTagName("td")[i].style.backgroundPositionY = '';
-					mini.getElementsByTagName("td")[i].style.backgroundPositionX = '';
-				}
-	        	cur_game.push(game[game_number][last_sqr]);
-	        	last_sqr++;
-	    	}
-    	}
-	}*/
-	
-	
 	for (i = 0; i <mini.getElementsByTagName("td").length; i++){
         mini.getElementsByTagName("td")[i].style.backgroundColor = color_rgb[patterns[game_number][last_sqr]];
 		if(color_rgb[patterns[game_number][last_sqr]] != "#FFFFFF"){
@@ -168,19 +141,32 @@ function gameStart(){
 		}
 		if(flag == true && cnt == 49){
 			var victory = new Audio("./soundfx/missioncomplete.wav");
+			victory.volume = volumeE;
 			audio.pause();
 			quests[2] = 1;
-			while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-				document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-			}
-			document.getElementsByTagName("head")[0].removeChild(script);
-			setTimeout(function (){
+			
+			gui.append(document.createElement("sucesso"));
+			gui.setVisible(true);
+			var victory = new Audio("./soundfx/missioncomplete.wav");
+			victory.volume = volumeE;
+			setTimeout(function(){victory.play();}, 1000);
+			setTimeout(function () {
 				audio.src = './music/02_Failien_Funk.ogg';
-				audio.play();
-				victory.play();
+				audioCtr = setInterval(function (){
+					if(audio.paused){
+						audio.play();
+						clearInterval(audioCtr);
+					}
+				}, 200);
+				gui.setVisible(false);
+				document.getElementsByTagName("mini")[0].innerHTML = "";
+				document.getElementsByTagName("head")[0].removeChild(script);
+				document.onkeydown = principal;
+				document.onkeyup = secundario;
+				action = false;
 				u_action = true;
 				pauseP = false;
-			}, 200);
+			}, 2000);
 		}
 	}
 }

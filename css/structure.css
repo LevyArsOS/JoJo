@@ -7,6 +7,17 @@
     src: url(editundo.ttf);
 }
 
+parabens{
+	background-color: white;
+    background-image: url(../charset/parabens.png);
+    position: absolute;
+    width: 800px;
+    height: 600px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: 203px;
+}
+
 * {
     font-family: "EU","Helvetica";
 	image-rendering: pixelated;
@@ -16,6 +27,27 @@
 	image-rendering: -moz-crisp-edges;
 	image-rendering: -o-crisp-edges;
 	image-rendering: pixelated;
+}
+
+sucesso{
+	background-image: url(../charset/mission.png);
+	position: absolute;
+	background-size: 472px;
+	width: 472px;
+	height: 178px;
+	left: calc( calc( 100% - 472px) / 2);
+	top: calc( calc( 100% - 178px) / 2);
+}
+
+falha{
+	background-image: url(../charset/mission.png);
+	position: absolute;
+	background-size: 472px;
+	background-position-y : -178px;
+	width: 472px;
+	height: 178px;
+	left: calc( calc( 100% - 472px) / 2);
+	top: calc( calc( 100% - 178px) / 2);
 }
 
 body {
@@ -28,6 +60,12 @@ body {
 	background: -webkit-linear-gradient(-45deg, #5b5f66 0%,#191919 100%);
 	background: linear-gradient(135deg, #5b5f66 0%,#191919 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5b5f66', endColorstr='#191919',GradientType=1 );
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 game{

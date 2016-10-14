@@ -59,18 +59,28 @@ function mov(n){
 		setTimeout(
 			function(){
 				quests[8] = 1;
-				pauseP = false;
-				while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-					document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-				}
-				document.onkeydown = principal;
-				document.getElementsByTagName("head")[0].removeChild(script);
-				audio.src = './music/02_Failien_Funk.ogg';
+				gui.append(document.createElement("sucesso"));
+				gui.setVisible(true);
 				var victory = new Audio("./soundfx/missioncomplete.wav");
+				victory.volume = volumeE;
+				setTimeout(function(){victory.play();}, 1000);
 				setTimeout(function () {
-					audio.play();
-					victory.play();
-				});
+					audio.src = './music/02_Failien_Funk.ogg';
+					audioCtr = setInterval(function (){
+						if(audio.paused){
+							audio.play();
+							clearInterval(audioCtr);
+						}
+					}, 200);
+					gui.setVisible(false);
+					document.getElementsByTagName("mini")[0].innerHTML = "";
+					document.getElementsByTagName("head")[0].removeChild(script);
+					document.onkeydown = principal;
+					document.onkeyup = secundario;
+					action = false;
+					u_action = true;
+					pauseP = false;
+				}, 2000);
 			}, 50);	
 	}
 }

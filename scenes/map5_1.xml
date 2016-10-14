@@ -2,7 +2,7 @@
 	<resolution><X>68</X><Y>68</Y></resolution>
 	<coords>
 		<cord dir='[1,1,1,1]'><X>1</X><Y>1</Y></cord>
-		<cord dir='[1,1,0,0]'><X>1</X><Y>2</Y></cord>
+		<cord dir='[1,1,1,0]'><X>1</X><Y>2</Y></cord>
 		<cord dir='[1,0,0,1]'><X>2</X><Y>1</Y></cord>
 		<cord dir='[0,1,0,1]'><X>2</X><Y>2</Y></cord>
 	</coords>
@@ -13,6 +13,6 @@
 		<player><X>1</X><Y>2</Y><dir>right</dir></player>
 	</entradas>
 	<saidas>
-		<saida><X>0</X><Y>2</Y><dir>1</dir><entrada>0</entrada></saida>
+		
 	</saidas>
 </xml>

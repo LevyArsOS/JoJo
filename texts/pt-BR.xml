@@ -11,10 +11,10 @@
 				<fala>Não posso começar sem ter todas as facas.</fala>
 			</falas>
 			<falas>
-				<fala>Obrigado por acha-las por mim.</fala>
+				<fala>Obrigado por acha-las por mim. Que estranho, era pra ser só 3...</fala>
 			</falas>
 			<inst>
-				<mission>Colete as 4 facas do Mafforte espalhadas pelo Decom e as devolva.</mission>
+				<mission>Colete as 4 facas do Mafforte espalhadas pelo Decom apertando espaço e as devolva.</mission>
 			</inst>
 		</character>
 		<character>
@@ -39,11 +39,11 @@
 		<character>
 			<nome>Apaula de Delson</nome>
 			<falas>
-				<fala>Estamos precisando conectar os computadores que seram usados no evento com uma conexão ponto a ponto.</fala>
+				<fala>Estamos precisando conectar os computadores que serão usados no evento com uma conexão ponto a ponto.</fala>
 				<fala>Você poderia me ajudar a ligar os computadores?</fala>
 			</falas>
 			<falas>
-				<fala>Obrigado pela ajuda.</fala>
+				<fala>Agradeço por estabelecer a conexão entre todos os PCs.</fala>
 			</falas>
 			<inst>
 				<mission>Use o mouse  para conectar os computadores com o cabo de rede.</mission>
@@ -76,7 +76,7 @@
 				<fala>Procure no w3schools tudo sobre web.</fala>
 			</falas>
 			<falas>
-				<fala>Hehe, liste para mim as linguagens para web,</fala>
+				<fala>Hehe, obrigado</fala>
 			</falas>
 			<inst>
 				<mission>Procure o par de cada imagem nesse jogo da memoria</mission>
@@ -98,7 +98,9 @@
 			<falas>
 				<fala>Obrigada pela ajuda.</fala>
 			</falas>
-			<mission>Aperte o espaço para encher o balão até, no minimo 60 pontos.</mission>
+			<inst>
+				<mission>Aperte o espaço para encher o balão até, alcance no minimo 60 pontos.</mission>
+			</inst>
 		</character>
 		<character>
 			<nome>Marquinhos Pradão</nome>
@@ -126,7 +128,9 @@
 			<falas>
 				<fala>Muito bom, já temos uma das pontas, só falta o resto todo</fala>
 			</falas>
-			<mission> Ordene os fios do cabo de rede de acordo com o padrão indicado. Para ordenalos, clique e arrate os cabos para a posição desejada. </mission>
+			<inst>
+				<mission> Ordene os fios do cabo de rede de acordo com o padrão indicado. Para ordena-los, clique e arrate os cabos para a posição desejada. </mission>
+			</inst>
 		</character>
 		<character>
 			<nome>Gilar</nome>
@@ -145,13 +149,14 @@
 			</falas>
 			<inst>
 				<mission>Controle Gilar e derrote a guuglu atirando pão de queijo.</mission>
+				<mission>"w" e "s" o movimentam verticalmente e "espaço" atira o pão de queijo.</mission>
 			</inst>
 		</character>
 		<character>
 			<nome>Amigo do Mortes</nome>
 			<falas>
 				<fala>Cobertíssimo de razão, fois ludibriado. Esse PC velho não serve pra nada.</fala>
-				<fala>Leva de volta,vai.</fala>
+				<fala>Leva de volta, vai.</fala>
 			</falas>
 			<mission> Levar o computador de volta. </mission>
 		</character>

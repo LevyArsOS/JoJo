@@ -300,13 +300,23 @@ function basicIA(x,y,id, direc){
 			i = faca[0] + faca[1] + faca[2] + faca[3];
 			
 			if(i == 4){				
-				achievement(3);
-				quests[0] = 2;
-				objects.push(new msgBox(id, function(){}, 2));
+				objects.push(new msgBox(id, function(){
+					if(quests[0] != 2){
+						var victory = new Audio("./soundfx/missioncomplete.wav");
+						victory.volume = volumeE;
+						gui.append(document.createElement("sucesso"));
+						gui.setVisible(true);
+						setTimeout(function(){victory.play();}, 1000);
+						setTimeout(function (){
+							achievement(3);
+							quests[0] = 2;
+						}, 2000);
+					}
+				}, 2));
 			}else{
 				if(quests[0] == 0){
 					if(faca[0] == -1){
-						objects.push(new msgBox(id, function(){faca = [0,0,0,0]}, 0));
+						objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){faca = [0,0,0,0]}))}, 0));
 					}
 					quests[0] = 1;
 				}else if(quests[0] == 1){
@@ -315,39 +325,39 @@ function basicIA(x,y,id, direc){
 			}
 		}else if(id == 1){
 			if(quests[1] == 0){
-				objects.push(new msgBox(id, vivasMini, 0));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){vivasMini()}))}, 0));
 			}else if(quests[1] == 2){
 				objects.push(new msgBox(id, function (){}, 2));
 			}else{
-				objects.push(new msgBox(id, vivasMini, 1));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){vivasMini()}))}, 1));
 			}
 		}else if(id == 2){
 			if(quests[2] == 0){
-				objects.push(new msgBox(id, paulaMini, 0));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){paulaMini()}))}, 0));
 			}else{
 				objects.push(new msgBox(id, function(){}, 1));
 			}
 		}else if(id == 3){
 			if(quests[3] == 0){
-				objects.push(new msgBox(id, willianMini, 0));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){willianMini()}))}, 0));
 			}else if(quests[3] == 1){
-				objects.push(new msgBox(id, willianMini, 1));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){willianMini()}))}, 1));
 			}else{
 				objects.push(new msgBox(id, function (){}, 2));
 			}
 		}else if(id == 4){
 			if(quests[4] == 0){
-				objects.push(new msgBox(id, joseMini, 0));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){joseMini()}))}, 0));
 			}else{
 				objects.push(new msgBox(id, function(){}, 1));
 			}
 		}else if(id == 5){
 			if(quests[5] == 0){
-				objects.push(new msgBox(id, gliviaMini, 1));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){gliviaMini()}))}, 1));
 			}else if(quests[5] == 2){
 				objects.push(new msgBox(id, function (){}, 3));
 			}else{
-				objects.push(new msgBox(id, gliviaMini, 2));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){gliviaMini()}))}, 2));
 			}
 		}else if(id == 6){
 			objects.push(new msgBox(id, function (){}, 0));
@@ -355,28 +365,36 @@ function basicIA(x,y,id, direc){
 			objects.push(new msgBox(id, function (){}, 0));
 		}else if(id == 8){
 			if(quests[8] == 0){
-				objects.push(new msgBox(id, caboMini, 0));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){caboMini()}))}, 0));
 			}else{
-				objects.push(new msgBox(id, function (){}, 2));
+				objects.push(new msgBox(id, function (){}, 1));
 			}
 		}else if(id == 9){
 			if(quests[9] == 0){
-				objects.push(new msgBox(id, gilmarMini, 0));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){gilmarMini()}))}, 0));
 			}else if(quests[9] == 2){
 				objects.push(new msgBox(id, function (){}, 2));
 			}else{
-				objects.push(new msgBox(id, gilmarMini, 1));
+				objects.push(new msgBox(id, function(){objects.push(new instBox(id,function(){gilmarMini()}))}, 1));
 			}
 		}else if(id == 10){
-			quests[1] = 1;
-			objects.push(new msgBox(id, function(){
+			quests[1] = 2;
+			
+			var victory = new Audio("./soundfx/missioncomplete.wav");
+			victory.volume = volumeE;
+			gui.append(document.createElement("sucesso"));
+			gui.setVisible(true);
+			setTimeout(function(){victory.play();}, 1000);
+			setTimeout(function (){
+				gui.setVisible(false);
+				objects.push(new msgBox(id, function(){
 				achievement(1);
-				var victory = new Audio("./soundfx/missioncomplete.wav");
 				setTimeout(function () {
-					victory.play();
-				});
-			}, 0));
-			quests[10] = 1;
+						loadScene(1,0);
+					}, 200);
+				}, 0));
+				quests[10] = 1;
+			}, 2000);
 		}
 		else{
 			objects.push(new msgBox(id, function(){}, 0));
@@ -392,26 +410,26 @@ function coletaveis(x,y,id){
 	this.real_y = y*68;
 	
 	this.sound = new Audio('./soundfx/pickupfaca.wav')
-	
+	this.sound.volume = volumeE;
 	this.sprite = document.createElement("sprite");
-	this.superior = document.createElement("superior");
+	//this.superior = document.createElement("superior");
 	this.sprite.style.backgroundImage = "url('./charset/facas.png')";
-	this.superior.style.backgroundImage = "url('./charset/facas.png')";
+	//this.superior.style.backgroundImage = "url('./charset/facas.png')";
 	
 	this.sprite.style.backgroundSize = "136px";
-	this.superior.style.backgroundSize = "136px";
+	//this.superior.style.backgroundSize = "136px";
 	
 	if(id % 2 == 1){
 		this.sprite.style.backgroundPositionX = "-68px";
-		this.superior.style.backgroundPositionX = "-68px";
+		//this.superior.style.backgroundPositionX = "-68px";
 	}
 	this.sprite.style.backgroundPositionY = -68*Math.floor(id/2) + "px";
-	this.superior.style.backgroundPositionY = -68*Math.floor(id/2) + "px";
+	//this.superior.style.backgroundPositionY = -68*Math.floor(id/2) + "px";
 	
 	this.sprite.style.top = this.real_y + "px";
 	this.sprite.style.left = this.real_x + "px";
 	
-	this.sprite.appendChild(this.superior);
+	//this.sprite.appendChild(this.superior);
 	document.getElementById('game').appendChild(this.sprite);
 	
 	this.interaction = function (){
@@ -419,7 +437,7 @@ function coletaveis(x,y,id){
 		achievement(id+4);
 		faca[id] = 1;
 		document.getElementById('game').removeChild(this.sprite);
-		layer0[x][y] = null;
+		layer1[x][y] = null;
 	}
 }
 

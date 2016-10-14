@@ -1,6 +1,6 @@
 var images = [
-	"./charset/jose/img1.png",
-	"./charset/jose/img1.png",
+	"./charset/jose/img1.PNG",
+	"./charset/jose/img1.PNG",
 	"./charset/jose/img2.png",
 	"./charset/jose/img2.png",
 	"./charset/jose/img3.png",
@@ -43,20 +43,35 @@ function clicked(n){
 			if(current >= 0){
 				if(images[current] == images[n]){
 					states[current] = 1;
-					states[current] = 2;
+					states[n] = 2;
 					pt++;
 					current = -1;
 					if(pt == 8){
 						quests[4] = 1;
-						pauseP = false;
-						while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-							document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-						}
-						document.getElementsByTagName("head")[0].removeChild(script);
+						document.onkeydown = null;
+						document.onkeyup = null;
+						gui.append(document.createElement("sucesso"));
+						gui.setVisible(true);
 						var victory = new Audio("./soundfx/missioncomplete.wav");
-						setTimeout(function (){
-							victory.play();
-						},200);
+						victory.volume = volumeE;
+						setTimeout(function(){victory.play();}, 1000);
+						setTimeout(function () {
+							audio.src = './music/02_Failien_Funk.ogg';
+							audioCtr = setInterval(function (){
+								if(audio.paused){
+									audio.play();
+									clearInterval(audioCtr);
+								}
+							}, 200);
+							gui.setVisible(false);
+							document.getElementsByTagName("mini")[0].innerHTML = "";
+							document.getElementsByTagName("head")[0].removeChild(script);
+							document.onkeydown = principal;
+							document.onkeyup = secundario;
+							action = false;
+							u_action = true;
+							pauseP = false;
+						}, 2000);
 					}
 				}
 				else{

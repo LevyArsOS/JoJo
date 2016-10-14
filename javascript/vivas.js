@@ -24,6 +24,8 @@ function startGame() {
     myGameArea.start();
 	pulo = new Audio("./soundfx/jump.wav");
 	queda = new Audio("./soundfx/hurt.wav");
+	pulo.volume = volumeE;
+	queda.volume = volumeE;
 }
 
 var myGameArea = {
@@ -78,6 +80,7 @@ function component(width, height, color, x, y, type) {
     this.setImage = function(newImage) {
         novaImagem= document.createElement('img');
         novaImagem.src= newImage;
+		novaImagem.style.imageRendering = "pixelated";
         this.img.push(novaImagem);
     }
     this.andar = function() {
@@ -141,14 +144,33 @@ function updateGameArea() {
 			clearInterval(myGameArea.maxY);
 			clearInterval(myGameArea.win);
 			quests[1] = 1;
-			while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-				document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-			}
-			pauseP = false;
-			document.onkeydown = principal;
-			document.getElementsByTagName("head")[0].removeChild(script);
-			audio.src = './music/02_Failien_Funk.ogg';
-			audio.play();
+			
+			document.onkeydown = null;
+			document.onkeyup = null;
+			
+			var victory = new Audio("./soundfx/missionfail.wav");
+			victory.volume = volumeE;
+			
+			gui.append(document.createElement("falha"));
+			gui.setVisible(true);
+			setTimeout(function(){victory.play();}, 1000);
+			setTimeout(function (){
+				audio.src = './music/02_Failien_Funk.ogg';
+				audioCtr = setInterval(function (){
+					if(audio.paused){
+						audio.play();
+						clearInterval(audioCtr);
+					}
+				}, 200);
+				gui.setVisible(false);
+				document.getElementsByTagName("mini")[0].innerHTML = "";
+				document.getElementsByTagName("head")[0].removeChild(script);
+				document.onkeydown = principal;
+				document.onkeyup = secundario;
+				action = false;
+				u_action = true;
+				pauseP = false;
+			}, 2000);
             return;
         }
     }
@@ -235,15 +257,33 @@ function win() {
 		clearInterval(myGameArea.update);
 		clearInterval(myGameArea.maxY);
 		clearInterval(myGameArea.win);
-		while(document.getElementsByTagName("mini")[0].childNodes.length != 0){
-			document.getElementsByTagName("mini")[0].removeChild(document.getElementsByTagName("mini")[0].childNodes[0]);
-		}
-		document.onkeydown = principal;
-		document.getElementsByTagName("head")[0].removeChild(script);
-		loadScene(5,0);
-		audio.src = './music/02_Failien_Funk.ogg';
-		audio.play();
-		pauseP = false;
+		document.onkeydown = null;
+		document.onkeyup = null;
+		var victory = new Audio("./soundfx/missioncomplete.wav");
+			victory.volume = volumeE;
+			
+		gui.append(document.createElement("sucesso"));
+		gui.setVisible(true);
+		setTimeout(function(){victory.play();}, 1000);
+		setTimeout(function (){
+			audio.src = './music/02_Failien_Funk.ogg';
+			audioCtr = setInterval(function (){
+				if(audio.paused){
+					audio.play();
+					clearInterval(audioCtr);
+				}
+			}, 200);
+			gui.setVisible(false);
+			document.getElementsByTagName("mini")[0].innerHTML = "";
+			document.getElementsByTagName("head")[0].removeChild(script);
+			document.onkeydown = principal;
+			document.onkeyup = secundario;
+			action = false;
+			u_action = true;
+			pauseP = false
+			loadScene(5,0);
+		}, 2000);
+		
 		quests[1] = 1;
 	}
 }

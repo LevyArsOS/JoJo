@@ -38,11 +38,17 @@ function initialize(){
 	loadScene(2, 2);
 	setTimeout(function (){
 		audio.src = './music/02_Failien_Funk.ogg';
-		audio.play();
+		audioCtr = setInterval(function (){
+			if(audio.paused){
+				audio.play();
+				clearInterval(audioCtr);
+			}
+		}, 200);
 		gui.setVisible(false);
 		objects.push(new msgBox(5, function (){
 			mapa[0] = 2;
 			mapa[1] = 2;
+			loadScene(2, 2);
 		}, 0));
 		mini = document.getElementsByTagName("mini")[0];
 		game = document.getElementsByTagName("game")[0];
@@ -51,10 +57,20 @@ function initialize(){
 
 function main(timestamp){
 	
+	if(audio != null && audio != undefined){
+		audio.volume = volumeM;
+	}
+	
 	if (timestamp < lastFrameTimeMs + (1000 / maxFPS)) {
         requestAnimationFrame(main);
         return;
     }
+	
+	if(quests[0] + quests[1] + quests[2] + quests[3] + quests[4] + quests[5] + quests[6] + quests[7] + quests[8] + quests[9] + quests[10] == 14){
+		gui.append(document.createElement('parabens'));
+		gui.setVisible(true);
+		setTimeout(function(){location.reload(true)}, 5000);
+	}
 	
 	if(pause){
 		if(up && !u_up){
@@ -154,7 +170,7 @@ function main(timestamp){
 		}
 		framesThisSecond++;
 		
-		if(gui.visible){
+		if(!gui.visible){
 			gui.setVisible(true);
 		}
 		

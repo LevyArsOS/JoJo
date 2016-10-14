@@ -43,8 +43,7 @@ function msgBox(id, callback, sit){
 	this.action = false;
 	
 	this.talk = new Audio("./soundfx/talk.wav");
-	this.talk.volume = 0.5;
-	this.talk.loop = true;
+	this.talk.volume = volumeE;
 	
 	this.box = document.createElement("msgBox");
 	this.text = xmlDoc.getElementsByTagName("character")[id].getElementsByTagName("falas")[sit].getElementsByTagName("fala")[this.id].childNodes[0].nodeValue;
@@ -89,9 +88,6 @@ function msgBox(id, callback, sit){
 	
 	this.update = function (timestamp) {
 		if(!this.pronto){
-			if(this.talk.paused){
-				this.talk.play();
-			}
 			if((action == true && u_action == false) || this.action == true){
 				this.msg.innerHTML = this.text;
 				this.atual = 0;
@@ -109,7 +105,6 @@ function msgBox(id, callback, sit){
 					if (this.atual == this.text.length){
 						this.pronto = true;
 						this.atual = 0;
-						this.talk.pause();
 					}
 					this.time -= 100;
 				}
@@ -121,10 +116,92 @@ function msgBox(id, callback, sit){
 					this.text = xmlDoc.getElementsByTagName("character")[id].getElementsByTagName("falas")[sit].getElementsByTagName("fala")[this.id].childNodes[0].nodeValue;
 					this.msg.innerHTML = "";
 					this.pronto = false;
-					
 				}else{
 					gui.setVisible(false);
-					this.talk.pause();
+					for(i = 0; i < objects.length; i++){
+						if(objects[i] === this){
+							objects.splice(i,1);
+						}
+					}
+					pauseP = false;
+					callback();
+				}
+				u_action = true;
+			}
+		}
+		this.action = false;
+	};
+}
+
+function instBox(id, callback){
+	this.id = 0;
+	this.atual = 0;
+	this.pronto = false;
+	this.action = false;
+	
+	this.box = document.createElement("msgBox");
+	this.text = xmlDoc.getElementsByTagName("character")[id].getElementsByTagName("mission")[this.id].childNodes[0].nodeValue;
+	this.codnome = "Missão";
+	this.nome = document.createElement("nome");
+	this.msg = document.createElement("msg");
+	this.next = document.createElement("next");
+	
+	this.msg.style.width = "92%";
+	this.msg.style.left = "4%";
+	this.msg.style.marginTop = "2%";
+	
+	
+	this.next.onclick = function(){
+		for(i = 0; i < objects.length; i++){
+			if (objects[i] instanceof msgBox){
+				objects[i].action = true;
+			}
+		}
+	};
+	
+	this.nome.innerHTML = this.codnome;
+	this.msg.innerHTML = "";
+	this.next.innerHTML = "►";
+	
+	this.box.appendChild(this.nome);
+	this.box.appendChild(this.msg);
+	this.box.appendChild(this.next);
+	this.time = 0;
+	
+	gui.append(this.box);
+	
+	pauseP=true;
+	
+	gui.setVisible(true);
+	
+	this.update = function (timestamp) {
+		if(!this.pronto){
+			if((action == true && u_action == false) || this.action == true){
+				this.msg.innerHTML = this.text;
+				this.atual = 0;
+				this.pronto = true;
+				u_action = true;
+			}else{
+				this.time += delta;
+				while(this.time > 100 && !this.pronto){
+					this.msg.innerHTML += this.text.substr(this.atual, 1);
+					this.atual++;
+					if (this.atual == this.text.length){
+						this.pronto = true;
+						this.atual = 0;
+					}
+					this.time -= 100;
+				}
+			}
+		}else{
+			if((action == true && u_action == false) || this.action == true){
+				if(this.id < xmlDoc.getElementsByTagName("character")[id].getElementsByTagName("mission").length -1){
+					this.id++;
+					this.text = xmlDoc.getElementsByTagName("character")[id].getElementsByTagName("mission")[this.id].childNodes[0].nodeValue;
+					this.msg.innerHTML = "";
+					this.pronto = false;
+				}else{
+					gui.setVisible(false);
 					for(i = 0; i < objects.length; i++){
 						if(objects[i] === this){
 							objects.splice(i,1);
@@ -141,13 +218,12 @@ function msgBox(id, callback, sit){
 }
 
 function achievement(id){
-	
 	var conquista = document.createElement("conquista");
 	var icone = document.createElement("icone");
 	var nome = document.createElement("nome");
 	var texto = document.createElement("texto");
 	this.sound = new Audio('./soundfx/achievement.wav');
-	
+	this.sound.volume = volumeE;
 	var icon = xmlDoc.getElementsByTagName("achievement")[id].getElementsByTagName("icone")[0].childNodes[0].nodeValue;
 	nome.innerHTML = xmlDoc.getElementsByTagName("achievement")[id].getElementsByTagName("nome")[0].childNodes[0].nodeValue;
 	texto.innerHTML = xmlDoc.getElementsByTagName("achievement")[id].getElementsByTagName("desc")[0].childNodes[0].nodeValue;
