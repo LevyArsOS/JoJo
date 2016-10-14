@@ -97,16 +97,18 @@ function isbefore(a, b) {
 } 
 
 function dragenter(e) {
-    if (isbefore(source, e.target)) {
-      	e.target.parentNode.insertBefore(source, e.target);
-      	if(parseInt((e.target.id).substr(2,1)) != num_source){
-    		mov(-1);
-    	}
-    }
-    else {
-      	e.target.parentNode.insertBefore(source, e.target.nextSibling);
-      	mov(1);
-    }
+	if(e != undefined && e != null){
+		if (isbefore(source, e.target)) {
+			e.target.parentNode.insertBefore(source, e.target);
+			if(parseInt((e.target.id).substr(2,1)) != num_source){
+				mov(-1);
+			}
+		}
+		else {
+			e.target.parentNode.insertBefore(source, e.target.nextSibling);
+			mov(1);
+		}
+	}
 }
 
 function dragstart(e) {
